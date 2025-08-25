@@ -1,36 +1,19 @@
 const form = document.querySelector(".form-container");
 const listMenu = document.querySelector(".list-menu");
+const formIngredients = document.querySelector(".form-ingredients");
 
 const updateMenu = () => {
-  let menu = JSON.parse(localStorage.getItem("menu"));
-  if (!menu) {
-    menu = [];
-  }
+  let data = JSON.parse(localStorage.getItem("menu"));
+  if (!data) return
   listMenu.innerHTML = "";
   listMenu.insertAdjacentHTML(
     "afterbegin",
-    menu
-      .map(
-        (item, index) => `<li class="list-item" id=${index}>
-        <div><p>${item.desertName}</p>
-    
-          <form class="form-ingredients" id=${index}>
-            <label>
-              Інгредієнти:
-              <input type="text" name="ingredients" id="ingredients" required/>
-            </label>
-
-            <label>
-              Кількість г/ш в рецепті:
-              <input type="text" name="numb" id="numb" required/>
-            </label>
-            <button type="submit" class="btn-add">Додати інгредієнт</button>
-          </form>
-          </div>
-              <button type="button" class="btn-delete" data-delete="delete" id=${index}>Видалити</button>
-            </li>`
-      )
-      .join("")
+ `   <li class="list-item">
+            <p>${data.desertName}</p>
+             </ul>
+            <button type="button" class="btn-delete" data-delete="delete">Видалити десерт</button>
+          </li>`
+      
   );
 };
 
@@ -41,30 +24,36 @@ const createMenu = (e) => {
   let data = JSON.parse(localStorage.getItem("menu"));
 
   if (!data) {
-    data = [];
+   data = {};
   }
-
-  const menu = {
+ data = {
     desertName: desert.value,
+    recipe: []
   };
-
-  data.push(menu);
+  
   localStorage.setItem("menu", JSON.stringify(data));
   updateMenu();
   desert.value = "";
 };
 
+const createIngredientsMenu = (e) => {
+  e.preventDefault()
+  const {ingredients, numb} = e.currentTarget.elements
+   let data = JSON.parse(localStorage.getItem("menu"));
+   if(!data) return
+
+   data.recipe.push({
+    ingredients: ingredients.value,
+    numb: numb.value
+  })
+  
+   localStorage.setItem("menu", JSON.stringify(data));
+  updateMenu();
+  ingredients.value = '';
+  numb.value = '';
+
+}
 form.addEventListener("submit", createMenu);
-
-listMenu.addEventListener("click", (e) => {
-  if (e.target.hasAttribute("data-delete")) {
-    const id = e.target.id;
-    let menu = JSON.parse(localStorage.getItem("menu")) || [];
-    menu.splice(id, 1);
-    localStorage.setItem("menu", JSON.stringify(menu));
-    updateMenu();
-  }
-});
-
+formIngredients.addEventListener("submit", createIngredientsMenu);
 
 updateMenu();

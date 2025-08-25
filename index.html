@@ -1,43 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <header class="header">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="head-title">Список рецептів</h1>
+    </div>
+  </header>
+  <main>
+    <section class="section-form-menu">
       <div class="container">
-        <h1 class="head-title">Список рецептів</h1>
-      </div>
-    </header>
-    <main>
-      <section class="section-form-menu">
-        <div class="container">
-          <form class="form-container">
-            <label for="desert" class="label-desert">Назва десерту</label>
-            <input type="text" name="desertName" id="desert" class="desert" />
-            <button type="submit" class="btn-successfully">Готово</button>
-          </form>
-          
-          <form class="form-ingredients">
+        <form class="form-container">
+          <label for="desert" class="label-desert">Назва десерту</label>
+          <input type="text" name="desertName" id="desert" class="desert" />
+          <button type="submit" class="btn-successfully">Готово</button>
+        </form>
+
+        <form class="form-ingredients">
             <label>
               Інгредієнти:
-              <input type="text" name="ingredients" id="ingredients" required/>
+              <input type="text" name="ingredients" required/>
             </label>
 
             <label>
               Кількість г/ш в рецепті:
-              <input type="text" name="numb" id="numb" required/>
+              <input type="text" name="numb" required/>
             </label>
             <button type="submit" class="btn-add">Додати інгредієнт</button>
           </form>
-          <ul class="list-menu">
-          </ul>
-        </div>
-      </section>
-    </main>
-    <script src="./js/main.js"></script>
-  </body>
+        <ul class="list-menu">
+          <!-- <li class="list-item" id=${index}>
+            <div class="wrap-text">
+            <p>${item.desertName}</p>
+            <button type="submit" class="btn-add">Додати інгредієнт</button>
+            </div>
+            <button type="button" class="btn-delete" data-delete="delete" id=${index}>Видалити десерт</button>
+          </li> -->
+
+
+
+          <!-- <li class="list-item" id=${index}>
+            <div class="wrap-form-text">
+            <div>
+              <p class="title-form">${item.desertName}</p>
+
+              <form class="form-ingredients" id=${index}>
+                <label for="ingredients">
+                  Інгредієнти:</label>
+                <input type="text" name="ingredients" id="ingredients" class='input-ing' required />
+
+
+                <label for="numb">
+                  Кількість г/ш в рецепті:</label>
+                <input type="text" name="numb" id="numb" class='input-ing' required />
+
+                <button type="submit" class="btn-add">Додати інгредієнт</button>
+              </form>
+            </div>
+            <button type="submit" class="btn-add  hidden">Додати інгредієнт</button>
+            <button type="button" class="btn-delete" data-delete="delete" id=${index}>Видалити десерт</button>
+            </div>
+            <h2>Інгредієнти</h2>
+            <ul class="list-ingredients">
+              <li><p>цукор: <span>5г</span></p></li>
+              <li><p>цукор: <span>10Г</span></p></li>
+            </ul>
+          </li> -->
+        </ul>
+        <h2 class="title-ingredients">Інгредієнти</h2>
+        <ul class='list-ingredients'>
+          <li><p>цукор <span>5г</span></p></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script src="./js/main.js"></script>
+</body>
+
 </html>
