@@ -56,7 +56,6 @@ body {
 }
 
 .list-menu {
-  border: 2px solid #000000;
   width: 900px;
   display: flex;
 flex-direction: column;
@@ -219,8 +218,8 @@ margin-bottom: 20px;
 
 }
 
-.title-ingredients {
-  margin-top: 15px;
+.title-recepie {
+  text-align: center;
   margin-bottom: 10px;
 }
 
@@ -240,4 +239,11 @@ margin-bottom: 20px;
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+
+.recepie-item {
+      display: flex;
+      gap: 20px;
+    justify-content: center;
+    align-items: center;
 }

@@ -1,7 +1,6 @@
 const titleListIngredients = document.querySelector('.title-ingredients')
 const form = document.querySelector(".form-container");
 const listMenu = document.querySelector(".list-menu");
-// const formIngredients = document.querySelector(".form-ingredients");
 const listIngredients = document.querySelector('.list-ingredients')
 
 const updateMenu = () => {
@@ -11,7 +10,6 @@ const updateMenu = () => {
   listMenu.innerHTML = "";
   listMenu.insertAdjacentHTML(
     "afterbegin", data.map((item, index) =>     `<li class="list-item">
-    
             <p>${item.desertName}</p>
             <div class="wrap-btn">
             <button type="button" class="btn-delete" data-delete="delete" id=${index}>Видалити десерт</button>
@@ -24,23 +22,21 @@ const updateMenu = () => {
             </label>
             <button type="submit" class="btn-add" id=${index}>Додати рецепт</button>
           </form>
+          <h1 class=${item.recipeGroup[index] || "hidden"}>Технології приготування</h1>
           </li>`).join('')
   );
 // console.log(data[0].recipeGroup.length)
-data.forEach((item, index) => {
-  console.log(`Десерт: ${item.desertName}`);
-  item.recipeGroup.forEach(recipe => {
-    console.log(`--> Рецепт: ${recipe.recipeName}`);
-  });
-});
+// data.forEach((item, index) => console.log())
+if (!data[0].recipeGroup) return
  listIngredients.innerHTML = ""
-  // listIngredients.insertAdjacentHTML(
-  //   "afterbegin", data.map((item, index) => `<li>
+  listIngredients.insertAdjacentHTML(
+    "afterbegin", data.map((item, index) => item.recipeGroup.map(recipe => `<li class="recepie-item">
     
-  //           <p>${item.recipeGroup[index].recipeName}</p>
-
-  //         </li>`).join('')
-  // );
+            <h1 class="title-recepie" >${recipe.recipeName}</h1>
+            <button type="button" class="btn-add" data-delete="delete" id=${index}>Видалити інгредієнт</button>
+            <button type="submit" class="btn-add" id=${index}>Додати інгредієнт</button>
+          </li>`).join(''))
+  );
 };
 
 
@@ -62,6 +58,7 @@ data.push(menu)
   localStorage.setItem("menu", JSON.stringify(data));
   updateMenu();
   desert.value = "";
+  form.classList.add('hidden')
   // console.log(indexMenu)
   // formIngredients.classList.remove('hidden')
   // titleListIngredients.classList.remove('hidden')
@@ -71,6 +68,7 @@ const createFormMenu = (e) => {
   if (e.target.hasAttribute('data-add')) {
     const formIngredients = document.querySelector(".form-ingredients");
     formIngredients.classList.remove('hidden')
+    form.classList.add('hidden')
   }
 }
 
@@ -90,6 +88,7 @@ const formReceptMenu = (e) => {
   localStorage.setItem("menu", JSON.stringify(data));
   updateMenu();
   nameRecipe.value = '';
+  form.classList.add('hidden')
   // titleListIngredients.classList.remove('hidden')
 }
 
@@ -97,6 +96,8 @@ const menuRemove = e => {
   if (e.target.hasAttribute('data-delete')) {
     localStorage.removeItem("menu");
     listMenu.innerHTML = "";
+    listIngredients.innerHTML = "";
+     form.classList.remove('hidden')
     // listIngredients.innerHTML = "";
     // formIngredients.classList.add('hidden')
     // titleListIngredients.classList.add('hidden')
