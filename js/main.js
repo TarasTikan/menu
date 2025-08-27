@@ -2,14 +2,20 @@ const titleListIngredients = document.querySelector('.title-ingredients')
 const form = document.querySelector(".form-container");
 const listMenu = document.querySelector(".list-menu");
 const listIngredients = document.querySelector('.list-ingredients')
+const btnAddDesert = document.querySelector('.add-btn-desert')
+
+
 
 const updateMenu = () => {
-  // console.log([] === true)
   let data = JSON.parse(localStorage.getItem("menu"));
-  if (!data) return
+ 
+  if (!data) {
+return btnAddDesert.classList.remove('hidden')
+  }
+  
   listMenu.innerHTML = "";
   listMenu.insertAdjacentHTML(
-    "afterbegin", data.map((item, index) =>     `<li class="list-item">
+    "afterbegin", data.map((item, index) => `<li class="list-item">
             <p>${item.desertName}</p>
             <div class="wrap-btn">
             <button type="button" class="btn-delete" data-delete="delete" id=${index}>Видалити десерт</button>
@@ -22,19 +28,32 @@ const updateMenu = () => {
             </label>
             <button type="submit" class="btn-add" id=${index}>Додати рецепт</button>
           </form>
-          <h1 class=${item.recipeGroup[index] || "hidden"}>Технології приготування</h1>
+          <h1 class=${item.recipeGroup[index] || "hidden"}>Технології приготування ${item.desertName}</h1>
           </li>`).join('')
   );
-// console.log(data[0].recipeGroup.length)
-// data.forEach((item, index) => console.log())
-if (!data[0].recipeGroup) return
- listIngredients.innerHTML = ""
+  // console.log(data[0].recipeGroup.length)
+  // data.forEach((item, index) => console.log())
+  if (!data[0].recipeGroup) return
+  listIngredients.innerHTML = ""
   listIngredients.insertAdjacentHTML(
     "afterbegin", data.map((item, index) => item.recipeGroup.map(recipe => `<li class="recepie-item">
-    
-            <h1 class="title-recepie" >${recipe.recipeName}</h1>
-            <button type="button" class="btn-add" data-delete="delete" id=${index}>Видалити інгредієнт</button>
-            <button type="submit" class="btn-add" id=${index}>Додати інгредієнт</button>
+      <div class="wrap-recepie">
+       <h1 class="title-recepie" >${recipe.recipeName}</h1>
+            <button type="button" class="btn-add" data-delete="delete" id=${recipe.index}>Видалити рецепт</button>
+            <button type="button" class="btn-add" data-add="add" id=${recipe.index}>Додати інгредієнт</button>
+      </div>
+               <form class="form-recepie-ingredients hidden" id=${recipe.index}>
+                <label>
+              Інгредієнти:
+              <input type="text" name="ingredients" class="desert" required/>
+            </label>
+
+            <label>
+              Кількість г/ш в рецепті:
+              <input type="text" name="numb" class="desert" required/>
+            </label>
+            <button type="submit" class="btn-add">Додати інгредієнт</button>
+          </form>
           </li>`).join(''))
   );
 };
@@ -51,10 +70,10 @@ const createMenu = (e) => {
 
   const menu = {
     desertName: desert.value,
-    index:  data.length+1,
+    index: data.length + 1,
     recipeGroup: []
   };
-data.push(menu)
+  data.push(menu)
   localStorage.setItem("menu", JSON.stringify(data));
   updateMenu();
   desert.value = "";
@@ -81,10 +100,10 @@ const formReceptMenu = (e) => {
 
   data[e.target.id].recipeGroup.push({
     recipeName: nameRecipe.value,
-    index:  data[e.target.id].recipeGroup.length+1,
+    index: data[e.target.id].recipeGroup.length + 1,
     recipe: []
   })
-// console.log(data[e.target.id])
+  // console.log(data[e.target.id])
   localStorage.setItem("menu", JSON.stringify(data));
   updateMenu();
   nameRecipe.value = '';
@@ -97,12 +116,26 @@ const menuRemove = e => {
     localStorage.removeItem("menu");
     listMenu.innerHTML = "";
     listIngredients.innerHTML = "";
-     form.classList.remove('hidden')
+    btnAddDesert.classList.remove('hidden')
+    // form.classList.remove('hidden')
     // listIngredients.innerHTML = "";
     // formIngredients.classList.add('hidden')
     // titleListIngredients.classList.add('hidden')
   }
 }
+
+const createForRecepieMenu = e => {
+  if (e.target.hasAttribute('data-add')) {
+    const formRecepieIngredients = document.querySelector(".form-recepie-ingredients");
+    formRecepieIngredients.classList.remove('hidden')
+  }
+}
+
+const createBtnFormMenu = e => {
+  form.classList.remove('hidden')
+  btnAddDesert.classList.add('hidden')
+}
+
 // const ingredientsRemove = e => {
 //   if (e.target.hasAttribute('data-delete')) {
 //     let data = JSON.parse(localStorage.getItem("menu"));
@@ -119,8 +152,10 @@ listMenu.addEventListener('click', menuRemove)
 form.addEventListener("submit", createMenu);
 listMenu.addEventListener("submit", formReceptMenu);
 
-listMenu.addEventListener("click", createFormMenu);
+btnAddDesert.addEventListener("click", createBtnFormMenu);
 
+listMenu.addEventListener("click", createFormMenu);
+listIngredients.addEventListener("click", createForRecepieMenu);
 updateMenu();
 
 
@@ -136,15 +171,15 @@ updateMenu();
 
 
 
-    // <form class="form-ingredients">
-    //         <label>
-    //           Інгредієнти:
-    //           <input type="text" name="ingredients" class="desert" required/>
-    //         </label>
+// <form class="form-ingredients">
+//         <label>
+//           Інгредієнти:
+//           <input type="text" name="ingredients" class="desert" required/>
+//         </label>
 
-    //         <label>
-    //           Кількість г/ш в рецепті:
-    //           <input type="text" name="numb" class="desert" required/>
-    //         </label>
-    //         <button type="submit" class="btn-add">Додати інгредієнт</button>
-    //       </form>
+//         <label>
+//           Кількість г/ш в рецепті:
+//           <input type="text" name="numb" class="desert" required/>
+//         </label>
+//         <button type="submit" class="btn-add">Додати інгредієнт</button>
+//       </form>
