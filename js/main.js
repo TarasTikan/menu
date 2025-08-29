@@ -3,6 +3,11 @@ const form = document.querySelector(".form-container");
 const listMenu = document.querySelector(".list-menu");
 const listIngredients = document.querySelector(".list-ingredients");
 const btnAddDesert = document.querySelector(".add-btn-desert");
+const btnSuccessfullyDesert = document.querySelector(".btn-successfully-desert")
+
+const generateUniqueNumber = () => {
+ return Date.now() + Math.floor(Math.random() * 1000)
+}
 
 const updateMenu = () => {
   let data = JSON.parse(localStorage.getItem("menu"));
@@ -36,9 +41,8 @@ const updateMenu = () => {
       )
       .join("")
   );
-  // console.log(data[0].recipeGroup.length)
-  // data.forEach((item, index) => console.log())
   if (!data[0].recipeGroup) return;
+
   listIngredients.innerHTML = "";
   listIngredients.insertAdjacentHTML(
     "afterbegin",
@@ -51,6 +55,7 @@ const updateMenu = () => {
             <button type="button" class="btn-add" data-delete="delete" id=${recipe.index}>Видалити рецепт</button>
             <button type="button" class="btn-add" data-add="add" id=${recipe.index}>Додати інгредієнт</button>
       </div>
+      <h2 class="title-recepie-ingredients ${recipe.recipeIngredienst.length > 0 ? "" : "hidden"}">Інгредієнти для рецепту ${recipe.recipeName}</h2>
                <form class="form-recepie-ingredients hidden" id=${recipe.index}>
                 <label>
               Інгредієнти:
@@ -63,13 +68,30 @@ const updateMenu = () => {
             </label>
             <button type="submit" class="btn-add">Додати інгредієнт</button>
           </form>
+          <ul class="list-ingredients-recepie">
+          ${recipe.recipeIngredienst.map((itemReciperIng) => `<li class="list-ingredients-item"><p>${itemReciperIng.ingredients} — ${itemReciperIng.numb}</p> <button type="button" class="btn-add" data-deleteRe="delete" id=${itemReciperIng.index}>Видалити інгредієнт</button></li>`).join("")}
+          </ul>
           </li>`
         )
         .join("")
     )
   );
+if (!data[0].recipeGroup[0]) return;
+    btnSuccessfullyDesert.classList.remove("hidden");
 };
 
+const createBtnFormMenu = (e) => {
+  form.classList.remove("hidden");
+  btnAddDesert.classList.add("hidden");
+};
+
+const createFormMenu = (e) => {
+  if (e.target.hasAttribute("data-add")) {
+    const formIngredients = document.querySelector(".form-ingredients");
+    formIngredients.classList.remove("hidden");
+    form.classList.add("hidden");
+  }
+};
 const createMenu = (e) => {
   e.preventDefault();
   const { desert } = e.currentTarget.elements;
@@ -81,7 +103,7 @@ const createMenu = (e) => {
 
   const menu = {
     desertName: desert.value,
-    index: data.length + 1,
+    index: generateUniqueNumber(),
     recipeGroup: [],
   };
   data.push(menu);
@@ -89,18 +111,16 @@ const createMenu = (e) => {
   updateMenu();
   desert.value = "";
   form.classList.add("hidden");
-  // console.log(indexMenu)
-  // formIngredients.classList.remove('hidden')
-  // titleListIngredients.classList.remove('hidden')
 };
-
-const createFormMenu = (e) => {
-  if (e.target.hasAttribute("data-add")) {
-    const formIngredients = document.querySelector(".form-ingredients");
-    formIngredients.classList.remove("hidden");
-    form.classList.add("hidden");
+const menuRemove = (e) => {
+  if (e.target.hasAttribute("data-delete")) {
+    localStorage.removeItem("menu");
+    listMenu.innerHTML = "";
+    listIngredients.innerHTML = "";
+    btnAddDesert.classList.remove("hidden");
   }
 };
+
 
 const formReceptMenu = (e) => {
   e.preventDefault();
@@ -111,96 +131,105 @@ const formReceptMenu = (e) => {
 
   data[e.target.id].recipeGroup.push({
     recipeName: nameRecipe.value,
-    index: data[e.target.id].recipeGroup.length + 1,
-    recipe: [],
+    index: generateUniqueNumber(),
+    recipeIngredienst: [],
   });
-  // console.log(data[e.target.id])
   localStorage.setItem("menu", JSON.stringify(data));
   updateMenu();
   nameRecipe.value = "";
   form.classList.add("hidden");
-  // titleListIngredients.classList.remove('hidden')
-};
-
-const menuRemove = (e) => {
-  if (e.target.hasAttribute("data-delete")) {
-    localStorage.removeItem("menu");
-    listMenu.innerHTML = "";
-    listIngredients.innerHTML = "";
-    btnAddDesert.classList.remove("hidden");
-    // form.classList.remove('hidden')
-    // listIngredients.innerHTML = "";
-    // formIngredients.classList.add('hidden')
-    // titleListIngredients.classList.add('hidden')
-  }
 };
 
 const createForRecepieMenu = (e) => {
-  if (e.target.id) {
+  if (e.target.hasAttribute("data-add")) {
     const liElement = e.target.closest("li");
     const formRecepieIngredients = liElement.querySelector(
       ".form-recepie-ingredients"
     );
+
     formRecepieIngredients.classList.remove("hidden");
+
   }
 };
 
-const createBtnFormMenu = (e) => {
-  form.classList.remove("hidden");
-  btnAddDesert.classList.add("hidden");
-};
+const deleteForRecepieMenu = (e) => {
+  if (e.target.hasAttribute("data-delete")) {
+    const data = JSON.parse(localStorage.getItem("menu"));
+    if(!data) return
+    const indexRecipe = data[0].recipeGroup.findIndex(item => item.index === Number(e.target.id))
+    if(indexRecipe === -1) return
+    data[0].recipeGroup.splice(indexRecipe, 1)
+    localStorage.setItem("menu", JSON.stringify(data))
+    btnSuccessfullyDesert.classList.add("hidden");
+    updateMenu();
+  }
+  }
+
+
+
 
 const formReceptIngrediensMenu = (e) => {
   e.preventDefault();
   const { ingredients, numb } = e.target.elements;
   let data = JSON.parse(localStorage.getItem("menu"));
   if (!data) return;
-  // const indexMenu = data.findIndex(
-  //   (item) => item.index === Number(e.target.id)
-  // );
-  // console.log(indexMenu);
-  // if (indexMenu === -1) return;
   const indexRecipe = data[0].recipeGroup.findIndex(
     (item) => item.index === Number(e.target.id)
   );
   if (indexRecipe === -1) return;
-  data[0].recipeGroup[indexRecipe].recipe.push({
+  data[0].recipeGroup[indexRecipe].recipeIngredienst.push({
+    index: generateUniqueNumber(),
     ingredients: ingredients.value,
     numb: numb.value,
   });
   localStorage.setItem("menu", JSON.stringify(data))
+  updateMenu();
 };
-// const ingredientsRemove = e => {
-//   if (e.target.hasAttribute('data-delete')) {
-//     let data = JSON.parse(localStorage.getItem("menu"));
-//     data.recipe.splice(e.target.id, 1)
-//     localStorage.setItem("menu", JSON.stringify(data));
-//     listIngredients.innerHTML = "";
-//     updateMenu();
-//   }
-// }
-// const formIngredients = document.querySelector(".form-ingredients");
 
-// listIngredients.addEventListener('click', ingredientsRemove)
+const deleteIngredientsRecepie = (e) => {
+  if (e.target.hasAttribute("data-deleteRe")) {
+    let data = JSON.parse(localStorage.getItem("menu"));
+    if(!data) return
+    const indexRecipe = data[0].recipeGroup.findIndex(item => item.recipeIngredienst.some(ing => ing.index === Number(e.target.id)))
+    if(indexRecipe === -1) return
+    const indexIngridient = data[0].recipeGroup[indexRecipe].recipeIngredienst.findIndex(ing => ing.index === Number(e.target.id))
+    if(indexIngridient === -1) return
+    data[0].recipeGroup[indexRecipe].recipeIngredienst.splice(indexIngridient, 1)
+    localStorage.setItem("menu", JSON.stringify(data))
+    updateMenu();
+  }}
+
+const successfullyDesert = (e) => {
+  const data = JSON.parse(localStorage.getItem("menu"));
+  if(!data) return
+
+  let dataListMenu = JSON.parse(localStorage.getItem("listMenuDesert"));
+  if(!dataListMenu) {
+dataListMenu = []
+  }
+
+  dataListMenu.push(data[0])
+  localStorage.setItem("listMenuDesert", JSON.stringify(dataListMenu)) 
+  localStorage.removeItem("menu");
+  listMenu.innerHTML = "";
+  listIngredients.innerHTML = "";
+  btnSuccessfullyDesert.classList.add("hidden");
+  btnAddDesert.classList.remove("hidden");
+}
+
 listMenu.addEventListener("click", menuRemove);
 form.addEventListener("submit", createMenu);
 listMenu.addEventListener("submit", formReceptMenu);
 listIngredients.addEventListener("submit", formReceptIngrediensMenu);
-btnAddDesert.addEventListener("click", createBtnFormMenu);
+
 
 listMenu.addEventListener("click", createFormMenu);
+
 listIngredients.addEventListener("click", createForRecepieMenu);
+listIngredients.addEventListener("click", deleteForRecepieMenu);
+listIngredients.addEventListener("click", deleteIngredientsRecepie);
+
+btnAddDesert.addEventListener("click", createBtnFormMenu);
+btnSuccessfullyDesert.addEventListener("click", successfullyDesert)
 updateMenu();
 
-// <form class="form-ingredients">
-//         <label>
-//           Інгредієнти:
-//           <input type="text" name="ingredients" class="desert" required/>
-//         </label>
-
-//         <label>
-//           Кількість г/ш в рецепті:
-//           <input type="text" name="numb" class="desert" required/>
-//         </label>
-//         <button type="submit" class="btn-add">Додати інгредієнт</button>
-//       </form>

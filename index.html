@@ -11,7 +11,12 @@
 <body>
   <header class="header">
     <div class="container">
-      <h1 class="head-title">Список рецептів</h1>
+      <nav class="nav">
+        <a href="./index.html" class="nav-link">Головна</a>
+        <a href="./menu.html" class="nav-link">Список рецептів</a>
+        </nav>
+      <h1 class="head-title">Рецепт</h1>
+
     </div>
   </header>
   <main>
@@ -23,62 +28,11 @@
           <input type="text" name="desertName" id="desert" class="desert" />
           <button type="submit" class="btn-successfully">Готово</button>
         </form>
-
-        <!-- <form class="form-ingredients hidden">
-            <label>
-              Інгредієнти:
-              <input type="text" name="ingredients" class="desert" required/>
-            </label>
-
-            <label>
-              Кількість г/ш в рецепті:
-              <input type="text" name="numb" class="desert" required/>
-            </label>
-            <button type="submit" class="btn-add">Додати інгредієнт</button>
-          </form> -->
         <ul class="list-menu">
-          <!-- <li class="list-item" id=${index}>
-            <div class="wrap-text">
-            <p>${item.desertName}</p>
-            <button type="submit" class="btn-add">Додати інгредієнт</button>
-            </div>
-            <button type="button" class="btn-delete" data-delete="delete" id=${index}>Видалити десерт</button>
-          </li> -->
-
-
-
-          <!-- <li class="list-item" id=${index}>
-            <div class="wrap-form-text">
-            <div>
-              <p class="title-form">${item.desertName}</p>
-
-              <form class="form-ingredients" id=${index}>
-                <label for="ingredients">
-                  Інгредієнти:</label>
-                <input type="text" name="ingredients" id="ingredients" class='input-ing' required />
-
-
-                <label for="numb">
-                  Кількість г/ш в рецепті:</label>
-                <input type="text" name="numb" id="numb" class='input-ing' required />
-
-                <button type="submit" class="btn-add">Додати інгредієнт</button>
-              </form>
-            </div>
-            <button type="submit" class="btn-add  hidden">Додати інгредієнт</button>
-            <button type="button" class="btn-delete" data-delete="delete" id=${index}>Видалити десерт</button>
-            </div>
-            <h2>Інгредієнти</h2>
-            <ul class="list-ingredients">
-              <li><p>цукор: <span>5г</span></p></li>
-              <li><p>цукор: <span>10Г</span></p></li>
-            </ul>
-          </li> -->
-        </ul>
-        
+        </ul> 
         <ul class='list-ingredients'>
-        
         </ul>
+        <button type="button" class="btn-successfully-desert hidden">Готовий десерт</button>
       </div>
     </section>
   </main>

@@ -288,3 +288,68 @@ margin-bottom: 20px;
 .hidden {
   display: none;
 }
+
+.list-ingredients-recepie {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.list-ingredients-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-successfully-desert {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+    color: rgb(0, 0, 0);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-transform: uppercase;
+  border: 2px solid rgb(0, 0, 0);
+  width: 210px;
+  height: 40px;
+  background-color: transparent;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    cursor 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+
+.btn-successfully-desert:hover {
+  background-color: rgb(0, 0, 0);
+  border-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+
+/* MENUUU CSS */
+
+
+.list-menu-recepie{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.menu-recepie .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0px 21px;
+  margin: 0 auto;
+}
