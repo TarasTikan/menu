@@ -12,24 +12,26 @@
   <header class="header">
     <div class="container">
       <nav class="nav">
-        <a href="./index.html" class="nav-link">Головна</a>
-        <a href="./menu.html" class="nav-link">Список рецептів</a>
-        </nav>
-      <h1 class="head-title">Рецепт</h1>
+        <ul class="nav-list">
+          <li><a href="./index.html" class="nav-link">Головна</a></li>
+          <li><a href="./menu.html" class="nav-link">Список рецептів</a></li>
+        </ul>
 
+      </nav>
     </div>
   </header>
   <main>
     <section class="section-form-menu">
       <div class="container">
+        <h1 class="menu-title-recepie">Меню</h1>
         <button type="button" class="add-btn-desert hidden">Додати Десерт</button>
         <form class="form-container hidden">
-          <label for="desert" class="label-desert">Назва десерту</label>
-          <input type="text" name="desertName" id="desert" class="desert" />
-          <button type="submit" class="btn-successfully">Готово</button>
+          <label for="desert" class="label-input-desert">Назва десерту</label>
+          <input type="text" name="desertName" id="desert" class="input-dessert" />
+          <button type="submit" class="btn-create-dessert">Готово</button>
         </form>
-        <ul class="list-menu">
-        </ul> 
+        <div class="list-menu">
+        </div> 
         <ul class='list-ingredients'>
         </ul>
         <button type="button" class="btn-successfully-desert hidden">Готовий десерт</button>

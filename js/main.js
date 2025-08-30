@@ -21,23 +21,23 @@ const updateMenu = () => {
     "afterbegin",
     data
       .map(
-        (item, index) => `<li class="list-item">
-            <p>${item.desertName}</p>
+        (item, index) => `
+            <h2 class="title-desert">${item.desertName}</h2>
             <div class="wrap-btn">
-            <button type="button" class="btn-delete" data-delete="delete" id=${index}>Видалити десерт</button>
-            <button type="button" class="btn-delete" data-add="add" id=${index}>Додати до десерту рецепт</button>
+            <button type="button" class="btn-dessert" data-delete="delete" id=${index}>Видалити десерт</button>
+            <button type="button" class="btn-dessert" data-add="add" id=${index}>Додати до десерту рецепт</button>
             </div>
-            <form class="form-ingredients" id=${index}>
-            <label>
-              Назва рецепту:
-              <input type="text" name="nameRecipe" class="desert" required/>
+            <form class="form-title-recepie hidden" id=${index}>
+            <label class="label-title-recepie">
+              Назва рецепту
+              <input type="text" name="nameRecipe" class="input-title-recepie" required/>
             </label>
-            <button type="submit" class="btn-add" id=${index}>Додати рецепт</button>
+            <button type="submit" class="btn-dessert" id=${index}>Додати рецепт</button>
           </form>
-          <h1 class=${
+          <p class="sub-title-recepie ${
             item.recipeGroup[index] || "hidden"
-          }>Технології приготування ${item.desertName}</h1>
-          </li>`
+          }">Технології приготування ${item.desertName}</h1>
+          `
       )
       .join("")
   );
@@ -46,30 +46,30 @@ const updateMenu = () => {
   listIngredients.innerHTML = "";
   listIngredients.insertAdjacentHTML(
     "afterbegin",
-    data.map((item, index) =>
+    data.map((item) =>
       item.recipeGroup
         .map(
           (recipe) => `<li class="recepie-item">
       <div class="wrap-recepie">
        <h1 class="title-recepie" >${recipe.recipeName}</h1>
-            <button type="button" class="btn-add" data-delete="delete" id=${recipe.index}>Видалити рецепт</button>
-            <button type="button" class="btn-add" data-add="add" id=${recipe.index}>Додати інгредієнт</button>
+            <button type="button" class="btn-dessert" data-delete="delete" id=${recipe.index}>Видалити рецепт</button>
+            <button type="button" class="btn-dessert" data-add="add" id=${recipe.index}>Додати інгредієнт</button>
       </div>
-      <h2 class="title-recepie-ingredients ${recipe.recipeIngredienst.length > 0 ? "" : "hidden"}">Інгредієнти для рецепту ${recipe.recipeName}</h2>
+      <h2 class="title-ingredients ${recipe.recipeIngredienst.length > 0 ? "" : "hidden"}">Інгредієнти до ${recipe.recipeName}</h2>
                <form class="form-recepie-ingredients hidden" id=${recipe.index}>
-                <label>
+                <label class="label-title-recepie">
               Інгредієнти:
-              <input type="text" name="ingredients" class="desert" required/>
+              <input type="text" name="ingredients" class="input-title-recepie" required/>
             </label>
 
-            <label>
+            <label class="label-title-recepie">
               Кількість г/ш в рецепті:
-              <input type="text" name="numb" class="desert" required/>
+              <input type="text" name="numb" class="input-title-recepie" required/>
             </label>
-            <button type="submit" class="btn-add">Додати інгредієнт</button>
+            <button type="submit" class="btn-dessert">Додати інгредієнт</button>
           </form>
           <ul class="list-ingredients-recepie">
-          ${recipe.recipeIngredienst.map((itemReciperIng) => `<li class="list-ingredients-item"><p>${itemReciperIng.ingredients} — ${itemReciperIng.numb}</p> <button type="button" class="btn-add" data-deleteRe="delete" id=${itemReciperIng.index}>Видалити інгредієнт</button></li>`).join("")}
+          ${recipe.recipeIngredienst.map((itemReciperIng) => `<li class="list-ingredients-item"><p>${itemReciperIng.ingredients} — ${itemReciperIng.numb}</p> <button type="button" class="btn-dessert" data-deleteRe="delete" id=${itemReciperIng.index}>Видалити інгредієнт</button></li>`).join("")}
           </ul>
           </li>`
         )
@@ -85,13 +85,16 @@ const createBtnFormMenu = (e) => {
   btnAddDesert.classList.add("hidden");
 };
 
+// ця функція добавляє форму для створення назви етапу
 const createFormMenu = (e) => {
   if (e.target.hasAttribute("data-add")) {
-    const formIngredients = document.querySelector(".form-ingredients");
+    const formIngredients = document.querySelector(".form-title-recepie");
     formIngredients.classList.remove("hidden");
     form.classList.add("hidden");
   }
 };
+// ця функція добавляє форму для створення назви етапу
+
 const createMenu = (e) => {
   e.preventDefault();
   const { desert } = e.currentTarget.elements;
@@ -219,10 +222,10 @@ dataListMenu = []
 
 listMenu.addEventListener("click", menuRemove);
 form.addEventListener("submit", createMenu);
-listMenu.addEventListener("submit", formReceptMenu);
+
 listIngredients.addEventListener("submit", formReceptIngrediensMenu);
 
-
+listMenu.addEventListener("submit", formReceptMenu);
 listMenu.addEventListener("click", createFormMenu);
 
 listIngredients.addEventListener("click", createForRecepieMenu);
