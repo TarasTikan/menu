@@ -2,10 +2,10 @@ const listMenu = document.querySelector(".list-menu-recepie");
 const menuTitle = document.querySelector('.menu-title-recepie')
 const updateListMenu = () => {
   const data = JSON.parse(localStorage.getItem("listMenuDesert"));
-  if(!data || data.length === 0) {
+  if (!data || data.length === 0) {
     menuTitle.textContent = "Немає десертів у меню \u{1F370}";
   }
-  listMenu.innerHTML = ""; // Очищаємо попередній список перед оновленням
+  listMenu.innerHTML = "";
   listMenu.insertAdjacentHTML(
     "afterbegin",
     data

@@ -29,11 +29,11 @@ fieldset {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
-     background-color: #ffe0e4;
-     background-image: url("./img/background.png");
- background-size: 70%;
- background-position: center;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ffe0e4;
+  background-image: url("./img/background.png");
+  background-size: 70%;
+  background-position: center;
   background-attachment: fixed;
 }
 
@@ -74,7 +74,7 @@ body {
   font-weight: 600;
   line-height: 21px;
   text-decoration: none;
- padding: 25px 10px;
+  padding: 25px 10px;
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), border-radius 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -85,8 +85,8 @@ body {
 
 @media screen and (min-width: 400px) {
   .nav-link {
-padding: 27px 25px;
-font-size: 13px;
+    padding: 27px 25px;
+    font-size: 13px;
   }
 }
 
@@ -95,8 +95,24 @@ font-size: 13px;
   align-items: center;
   flex-direction: column;
   width: 100%;
-  padding: 0px 21px;
+  padding: 20px 21px;
   margin: 0 auto;
+  background-color: #ffebed;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border: 2px solid white;
+}
+
+@media screen and (min-width: 400px) {
+  .section-form-menu .container {
+    width: 350px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .section-form-menu .container {
+    width: 550px;
+  }
 }
 
 .menu-title-recepie {
@@ -104,15 +120,13 @@ font-size: 13px;
   font-weight: 700;
   color: #6e1a2b;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .list-menu {
-  width: 900px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 20px;
   padding-bottom: 20px;
   gap: 15px;
   justify-content: center;
@@ -410,6 +424,11 @@ font-size: 13px;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: #ffebed;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border: 2px solid white;
+  padding: 20px;
 }
 
 .wrap-recepie {

@@ -8,18 +8,13 @@ const btnSuccessfullyDesert = document.querySelector(".btn-successfully-desert")
 const generateUniqueNumber = () => {
   return Date.now() + Math.floor(Math.random() * 1000)
 }
-
-const updateMenu = () => {
-  let data = JSON.parse(localStorage.getItem("menu"));
-
-  if (!data) {
-    return btnAddDesert.classList.remove("hidden");
-  }
-
+const getMenuData = () => JSON.parse(localStorage.getItem("menu"));
+const setMenuData = (data) => localStorage.setItem("menu", JSON.stringify(data));
+const renderFormRecepie = (data) => {
   listMenu.innerHTML = "";
-  listMenu.insertAdjacentHTML(
+  return listMenu.insertAdjacentHTML(
     "afterbegin",
-     `
+    `
             <h2 class="title-desert">${data.desertName}</h2>
             <div class="wrap-btn">
             <button type="button" class="btn-create-recepie" data-delete="delete" id=${data.index}>Видалити десерт</button>
@@ -33,12 +28,12 @@ const updateMenu = () => {
             <button type="submit" class="btn-dessert" id=${data.index}>Додати рецепт</button>
           </form>
           <p class="sub-title-recepie ${data.recipeGroup.length || "hidden"
-          }">Технології приготування ${data.desertName}</h1>
+    }">Технології приготування ${data.desertName}</p>
           `
-   
-  );
-  if (!data.recipeGroup.length) return;
 
+  );
+}
+const renderListIngredients = (data) => {
   listIngredients.innerHTML = "";
   listIngredients.insertAdjacentHTML(
     "afterbegin",
@@ -66,9 +61,23 @@ const updateMenu = () => {
           ${item.recipeIngredienst.map((itemReciperIng) => `<li class="list-ingredients-item"><p class="ingredients-text">${itemReciperIng.ingredients} — ${itemReciperIng.numb}</p> <button type="button" class="btn-dessert" data-deleteRe="delete" id=${itemReciperIng.index}>Видалити інгредієнт</button></li>`).join("")}
           </ul>
           </li>`
-        )
-        .join("")
     )
+      .join("")
+  )
+}
+
+
+const updateMenu = () => {
+  const data = getMenuData();
+
+  if (!data) {
+    return btnAddDesert.classList.remove("hidden");
+  }
+  mainTitle.classList.add("hidden");
+
+  renderFormRecepie(data)
+  renderListIngredients(data)
+
   if (!data.recipeGroup.length) return;
   btnSuccessfullyDesert.classList.remove("hidden");
 };
@@ -78,7 +87,6 @@ const createBtnFormMenu = (e) => {
   btnAddDesert.classList.add("hidden");
 };
 
-// ця функція добавляє форму для створення назви етапу
 const createFormMenu = (e) => {
   if (e.target.hasAttribute("data-add")) {
     const formIngredients = document.querySelector(".form-title-recepie");
@@ -86,30 +94,26 @@ const createFormMenu = (e) => {
     form.classList.add("hidden");
   }
 };
-// ця функція добавляє форму для створення назви етапу
+
 
 const createMenu = (e) => {
   e.preventDefault();
-  if(!e.currentTarget.desert.value) return
+  if (!e.currentTarget.desert.value) return
   const { desert } = e.currentTarget.elements;
-  let data = JSON.parse(localStorage.getItem("menu"));
 
-  // if (!data) {
-  //   data = [];
-  // }
 
   const menu = {
     desertName: desert.value,
     index: generateUniqueNumber(),
     recipeGroup: [],
   };
-  // data.push(menu);
-  localStorage.setItem("menu", JSON.stringify(menu));
+  setMenuData(menu);
   updateMenu();
   desert.value = "";
   form.classList.add("hidden");
   mainTitle.classList.add("hidden");
 };
+
 const menuRemove = (e) => {
   if (e.target.hasAttribute("data-delete")) {
     localStorage.removeItem("menu");
@@ -117,7 +121,7 @@ const menuRemove = (e) => {
     listIngredients.innerHTML = "";
     btnAddDesert.classList.remove("hidden");
     btnSuccessfullyDesert.classList.add("hidden");
-     mainTitle.classList.remove("hidden");
+    mainTitle.classList.remove("hidden");
   }
 };
 
@@ -126,7 +130,7 @@ const formReceptMenu = (e) => {
   e.preventDefault();
   const { nameRecipe } = e.target.elements;
 
-  let data = JSON.parse(localStorage.getItem("menu"));
+  const data = getMenuData();
   if (!data) return;
 
   data.recipeGroup.push({
@@ -134,7 +138,8 @@ const formReceptMenu = (e) => {
     index: generateUniqueNumber(),
     recipeIngredienst: [],
   });
-  localStorage.setItem("menu", JSON.stringify(data));
+
+  setMenuData(data);
   updateMenu();
   nameRecipe.value = "";
   form.classList.add("hidden");
@@ -154,24 +159,22 @@ const createFormIngredients = (e) => {
 
 const deleteForRecepieMenu = (e) => {
   if (e.target.hasAttribute("data-delete")) {
-    const data = JSON.parse(localStorage.getItem("menu"));
+    const data = getMenuData();
     if (!data) return
     const indexRecipe = data.recipeGroup.findIndex(item => item.index === Number(e.target.id))
     if (indexRecipe === -1) return
     data.recipeGroup.splice(indexRecipe, 1)
-    localStorage.setItem("menu", JSON.stringify(data))
+    setMenuData(data);
+
     btnSuccessfullyDesert.classList.add("hidden");
     updateMenu();
   }
 }
 
-
-
-
 const formReceptIngrediensMenu = (e) => {
   e.preventDefault();
   const { ingredients, numb } = e.target.elements;
-  let data = JSON.parse(localStorage.getItem("menu"));
+  const data = getMenuData();
   if (!data) return;
   const indexRecipe = data.recipeGroup.findIndex(
     (item) => item.index === Number(e.target.id)
@@ -182,26 +185,26 @@ const formReceptIngrediensMenu = (e) => {
     ingredients: ingredients.value,
     numb: numb.value,
   });
-  localStorage.setItem("menu", JSON.stringify(data))
+  setMenuData(data);
   updateMenu();
 };
 
 const deleteIngredientsRecepie = (e) => {
   if (e.target.hasAttribute("data-deleteRe")) {
-    let data = JSON.parse(localStorage.getItem("menu"));
+    const data = getMenuData();
     if (!data) return
     const indexRecipe = data.recipeGroup.findIndex(item => item.recipeIngredienst.some(ing => ing.index === Number(e.target.id)))
     if (indexRecipe === -1) return
     const indexIngridient = data.recipeGroup[indexRecipe].recipeIngredienst.findIndex(ing => ing.index === Number(e.target.id))
     if (indexIngridient === -1) return
     data.recipeGroup[indexRecipe].recipeIngredienst.splice(indexIngridient, 1)
-    localStorage.setItem("menu", JSON.stringify(data))
+    setMenuData(data);
     updateMenu();
   }
 }
 
 const successfullyDesert = (e) => {
-  const data = JSON.parse(localStorage.getItem("menu"));
+  const data = getMenuData();
   if (!data) return
 
   let dataListMenu = JSON.parse(localStorage.getItem("listMenuDesert"));
@@ -209,16 +212,22 @@ const successfullyDesert = (e) => {
     dataListMenu = []
   }
 
-  dataListMenu.push(data[0])
+  dataListMenu.push(data)
   localStorage.setItem("listMenuDesert", JSON.stringify(dataListMenu))
   localStorage.removeItem("menu");
   listMenu.innerHTML = "";
   listIngredients.innerHTML = "";
   btnSuccessfullyDesert.classList.add("hidden");
   btnAddDesert.classList.remove("hidden");
+  mainTitle.classList.remove("hidden");
+  Toastify({
+    text: "Десерт успішно створено",
+    className: "info",
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    }
+  }).showToast();
 }
-
-
 
 const visibleIngredients = (e) => {
   if (e.target.classList.contains("visible-btn")) {
@@ -228,34 +237,28 @@ const visibleIngredients = (e) => {
 
     if (itemIngredients) {
       itemIngredients.classList.toggle("hidden");
+      e.target.textContent = itemIngredients.classList.contains("hidden") ? "Показати" : "Приховати"
     }
   }
 }
 
-// Показ форми для створення десерту
-btnAddDesert.addEventListener("click", createBtnFormMenu);
-// Показ форми для створення десерту
 
-// створення десерту та видалення
-listMenu.addEventListener("click", menuRemove);
-form.addEventListener("submit", createMenu);
-// створення десерту та видалення
+btnAddDesert.addEventListener("click", createBtnFormMenu); // створює форму для додавання десерту
+listMenu.addEventListener("click", menuRemove); // видалення десерту
+form.addEventListener("submit", createMenu); // створення десерту
 
-// створення етапа
-listMenu.addEventListener("submit", formReceptMenu); // створення етапа
-listMenu.addEventListener("click", createFormMenu);
 
-listIngredients.addEventListener("click", deleteForRecepieMenu); // deleteForRecepieMenu - видалення етапа
-// створення етапа
+listMenu.addEventListener("click", createFormMenu); // створює форму для додавання рецепта
+listMenu.addEventListener("submit", formReceptMenu); // створення рецепта
+listIngredients.addEventListener("click", deleteForRecepieMenu); // видалення рецепта
 
-// Створеняя інгредієнта та видалення
-listIngredients.addEventListener("submit", formReceptIngrediensMenu);
-listIngredients.addEventListener("click", deleteIngredientsRecepie);
+
 listIngredients.addEventListener("click", createFormIngredients); // створює форму для додавання інгредієнтів
-listIngredients.addEventListener("click", visibleIngredients);
-// Створеняя інгредієнта та видалення, показ інгредієнтів
+listIngredients.addEventListener("submit", formReceptIngrediensMenu);  // Створеняя інгредієнта
+listIngredients.addEventListener("click", deleteIngredientsRecepie); // видалення інгредієнта
+listIngredients.addEventListener("click", visibleIngredients); // показує/приховує інгредієнти
 
+btnSuccessfullyDesert.addEventListener("click", successfullyDesert) // фінальна стадія десерту
 
-btnSuccessfullyDesert.addEventListener("click", successfullyDesert)
-updateMenu();
+updateMenu(); // оновлення рендеру
 
