@@ -19,44 +19,38 @@ const updateMenu = () => {
   listMenu.innerHTML = "";
   listMenu.insertAdjacentHTML(
     "afterbegin",
-    data
-      .map(
-        (item, index) => `
-            <h2 class="title-desert">${item.desertName}</h2>
+     `
+            <h2 class="title-desert">${data.desertName}</h2>
             <div class="wrap-btn">
-            <button type="button" class="btn-create-recepie" data-delete="delete" id=${index}>Видалити десерт</button>
-            <button type="button" class="btn-create-recepie" data-add="add" id=${index}>Додати до десерту рецепт</button>
+            <button type="button" class="btn-create-recepie" data-delete="delete" id=${data.index}>Видалити десерт</button>
+            <button type="button" class="btn-create-recepie" data-add="add" id=${data.index}>Додати до десерту рецепт</button>
             </div>
-            <form class="form-title-recepie hidden" id=${index}>
+            <form class="form-title-recepie hidden" id=${data.index}>
             <label class="label-title-recepie">
               Назва рецепту
               <input type="text" name="nameRecipe" class="input-title-recepie" required/>
             </label>
-            <button type="submit" class="btn-dessert" id=${index}>Додати рецепт</button>
+            <button type="submit" class="btn-dessert" id=${data.index}>Додати рецепт</button>
           </form>
-          <p class="sub-title-recepie ${item.recipeGroup[index] || "hidden"
-          }">Технології приготування ${item.desertName}</h1>
+          <p class="sub-title-recepie ${data.recipeGroup.length || "hidden"
+          }">Технології приготування ${data.desertName}</h1>
           `
-      )
-      .join("")
+   
   );
-  if (!data[0].recipeGroup) return;
+  if (!data.recipeGroup.length) return;
 
   listIngredients.innerHTML = "";
   listIngredients.insertAdjacentHTML(
     "afterbegin",
-    data.map((item) =>
-      item.recipeGroup
-        .map(
-          (recipe) => `<li class="recepie-item">
+    data.recipeGroup.map((item) => `<li class="recepie-item">
       <div class="wrap-recepie">
-       <h1 class="title-recepie" >${recipe.recipeName}</h1>
-            <button type="button" class="btn-dessert" data-delete="delete" id=${recipe.index}>Видалити рецепт</button>
-            <button type="button" class="btn-dessert" data-add="add" id=${recipe.index}>Додати інгредієнт</button>
+       <h1 class="title-recepie" >${item.recipeName}</h1>
+            <button type="button" class="btn-dessert" data-delete="delete" id=${item.index}>Видалити рецепт</button>
+            <button type="button" class="btn-dessert" data-add="add" id=${item.index}>Додати інгредієнт</button>
       </div>
-      <div class="wrap-title-ingredients ${recipe.recipeIngredienst.length > 0 ? "" : "hidden"}"><h2 class="title-ingredients">Інгредієнти до ${recipe.recipeName}:</h2><button type="button" class="visible-btn">Показати</button> </div>
+      <div class="wrap-title-ingredients ${item.recipeIngredienst.length > 0 ? "" : "hidden"}"><h2 class="title-ingredients">Інгредієнти до ${item.recipeName}:</h2><button type="button" class="visible-btn">Показати</button> </div>
       
-               <form class="form-recepie-ingredients hidden" id=${recipe.index}>
+               <form class="form-recepie-ingredients hidden" id=${item.index}>
                 <label class="label-title-recepie">
               Інгредієнти:
               <input type="text" name="ingredients" class="input-title-recepie" required/>
@@ -69,14 +63,13 @@ const updateMenu = () => {
             <button type="submit" class="btn-dessert">Додати інгредієнт</button>
           </form>
           <ul class="list-ingredients-recepie hidden">
-          ${recipe.recipeIngredienst.map((itemReciperIng) => `<li class="list-ingredients-item"><p class="ingredients-text">${itemReciperIng.ingredients} — ${itemReciperIng.numb}</p> <button type="button" class="btn-dessert" data-deleteRe="delete" id=${itemReciperIng.index}>Видалити інгредієнт</button></li>`).join("")}
+          ${item.recipeIngredienst.map((itemReciperIng) => `<li class="list-ingredients-item"><p class="ingredients-text">${itemReciperIng.ingredients} — ${itemReciperIng.numb}</p> <button type="button" class="btn-dessert" data-deleteRe="delete" id=${itemReciperIng.index}>Видалити інгредієнт</button></li>`).join("")}
           </ul>
           </li>`
         )
         .join("")
     )
-  );
-  if (!data[0].recipeGroup[0]) return;
+  if (!data.recipeGroup.length) return;
   btnSuccessfullyDesert.classList.remove("hidden");
 };
 
@@ -101,17 +94,17 @@ const createMenu = (e) => {
   const { desert } = e.currentTarget.elements;
   let data = JSON.parse(localStorage.getItem("menu"));
 
-  if (!data) {
-    data = [];
-  }
+  // if (!data) {
+  //   data = [];
+  // }
 
   const menu = {
     desertName: desert.value,
     index: generateUniqueNumber(),
     recipeGroup: [],
   };
-  data.push(menu);
-  localStorage.setItem("menu", JSON.stringify(data));
+  // data.push(menu);
+  localStorage.setItem("menu", JSON.stringify(menu));
   updateMenu();
   desert.value = "";
   form.classList.add("hidden");
@@ -136,7 +129,7 @@ const formReceptMenu = (e) => {
   let data = JSON.parse(localStorage.getItem("menu"));
   if (!data) return;
 
-  data[e.target.id].recipeGroup.push({
+  data.recipeGroup.push({
     recipeName: nameRecipe.value,
     index: generateUniqueNumber(),
     recipeIngredienst: [],
@@ -147,7 +140,7 @@ const formReceptMenu = (e) => {
   form.classList.add("hidden");
 };
 
-const createForRecepieMenu = (e) => {
+const createFormIngredients = (e) => {
   if (e.target.hasAttribute("data-add")) {
     const liElement = e.target.closest("li");
     const formRecepieIngredients = liElement.querySelector(
@@ -163,9 +156,9 @@ const deleteForRecepieMenu = (e) => {
   if (e.target.hasAttribute("data-delete")) {
     const data = JSON.parse(localStorage.getItem("menu"));
     if (!data) return
-    const indexRecipe = data[0].recipeGroup.findIndex(item => item.index === Number(e.target.id))
+    const indexRecipe = data.recipeGroup.findIndex(item => item.index === Number(e.target.id))
     if (indexRecipe === -1) return
-    data[0].recipeGroup.splice(indexRecipe, 1)
+    data.recipeGroup.splice(indexRecipe, 1)
     localStorage.setItem("menu", JSON.stringify(data))
     btnSuccessfullyDesert.classList.add("hidden");
     updateMenu();
@@ -180,11 +173,11 @@ const formReceptIngrediensMenu = (e) => {
   const { ingredients, numb } = e.target.elements;
   let data = JSON.parse(localStorage.getItem("menu"));
   if (!data) return;
-  const indexRecipe = data[0].recipeGroup.findIndex(
+  const indexRecipe = data.recipeGroup.findIndex(
     (item) => item.index === Number(e.target.id)
   );
   if (indexRecipe === -1) return;
-  data[0].recipeGroup[indexRecipe].recipeIngredienst.push({
+  data.recipeGroup[indexRecipe].recipeIngredienst.push({
     index: generateUniqueNumber(),
     ingredients: ingredients.value,
     numb: numb.value,
@@ -197,11 +190,11 @@ const deleteIngredientsRecepie = (e) => {
   if (e.target.hasAttribute("data-deleteRe")) {
     let data = JSON.parse(localStorage.getItem("menu"));
     if (!data) return
-    const indexRecipe = data[0].recipeGroup.findIndex(item => item.recipeIngredienst.some(ing => ing.index === Number(e.target.id)))
+    const indexRecipe = data.recipeGroup.findIndex(item => item.recipeIngredienst.some(ing => ing.index === Number(e.target.id)))
     if (indexRecipe === -1) return
-    const indexIngridient = data[0].recipeGroup[indexRecipe].recipeIngredienst.findIndex(ing => ing.index === Number(e.target.id))
+    const indexIngridient = data.recipeGroup[indexRecipe].recipeIngredienst.findIndex(ing => ing.index === Number(e.target.id))
     if (indexIngridient === -1) return
-    data[0].recipeGroup[indexRecipe].recipeIngredienst.splice(indexIngridient, 1)
+    data.recipeGroup[indexRecipe].recipeIngredienst.splice(indexIngridient, 1)
     localStorage.setItem("menu", JSON.stringify(data))
     updateMenu();
   }
@@ -239,22 +232,30 @@ const visibleIngredients = (e) => {
   }
 }
 
+// Показ форми для створення десерту
+btnAddDesert.addEventListener("click", createBtnFormMenu);
+// Показ форми для створення десерту
 
+// створення десерту та видалення
 listMenu.addEventListener("click", menuRemove);
 form.addEventListener("submit", createMenu);
+// створення десерту та видалення
 
-listIngredients.addEventListener("submit", formReceptIngrediensMenu);
-
-listMenu.addEventListener("submit", formReceptMenu);
+// створення етапа
+listMenu.addEventListener("submit", formReceptMenu); // створення етапа
 listMenu.addEventListener("click", createFormMenu);
 
-listIngredients.addEventListener("click", createForRecepieMenu);
-listIngredients.addEventListener("click", deleteForRecepieMenu);
+listIngredients.addEventListener("click", deleteForRecepieMenu); // deleteForRecepieMenu - видалення етапа
+// створення етапа
+
+// Створеняя інгредієнта та видалення
+listIngredients.addEventListener("submit", formReceptIngrediensMenu);
 listIngredients.addEventListener("click", deleteIngredientsRecepie);
+listIngredients.addEventListener("click", createFormIngredients); // створює форму для додавання інгредієнтів
 listIngredients.addEventListener("click", visibleIngredients);
+// Створеняя інгредієнта та видалення, показ інгредієнтів
 
 
-btnAddDesert.addEventListener("click", createBtnFormMenu);
 btnSuccessfullyDesert.addEventListener("click", successfullyDesert)
 updateMenu();
 
