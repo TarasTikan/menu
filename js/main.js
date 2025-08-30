@@ -1,4 +1,4 @@
-const titleListIngredients = document.querySelector(".title-ingredients");
+const mainTitle = document.querySelector(".menu-title-recepie");
 const form = document.querySelector(".form-container");
 const listMenu = document.querySelector(".list-menu");
 const listIngredients = document.querySelector(".list-ingredients");
@@ -6,7 +6,7 @@ const btnAddDesert = document.querySelector(".add-btn-desert");
 const btnSuccessfullyDesert = document.querySelector(".btn-successfully-desert")
 
 const generateUniqueNumber = () => {
- return Date.now() + Math.floor(Math.random() * 1000)
+  return Date.now() + Math.floor(Math.random() * 1000)
 }
 
 const updateMenu = () => {
@@ -24,8 +24,8 @@ const updateMenu = () => {
         (item, index) => `
             <h2 class="title-desert">${item.desertName}</h2>
             <div class="wrap-btn">
-            <button type="button" class="btn-dessert" data-delete="delete" id=${index}>Видалити десерт</button>
-            <button type="button" class="btn-dessert" data-add="add" id=${index}>Додати до десерту рецепт</button>
+            <button type="button" class="btn-create-recepie" data-delete="delete" id=${index}>Видалити десерт</button>
+            <button type="button" class="btn-create-recepie" data-add="add" id=${index}>Додати до десерту рецепт</button>
             </div>
             <form class="form-title-recepie hidden" id=${index}>
             <label class="label-title-recepie">
@@ -34,8 +34,7 @@ const updateMenu = () => {
             </label>
             <button type="submit" class="btn-dessert" id=${index}>Додати рецепт</button>
           </form>
-          <p class="sub-title-recepie ${
-            item.recipeGroup[index] || "hidden"
+          <p class="sub-title-recepie ${item.recipeGroup[index] || "hidden"
           }">Технології приготування ${item.desertName}</h1>
           `
       )
@@ -55,7 +54,8 @@ const updateMenu = () => {
             <button type="button" class="btn-dessert" data-delete="delete" id=${recipe.index}>Видалити рецепт</button>
             <button type="button" class="btn-dessert" data-add="add" id=${recipe.index}>Додати інгредієнт</button>
       </div>
-      <h2 class="title-ingredients ${recipe.recipeIngredienst.length > 0 ? "" : "hidden"}">Інгредієнти до ${recipe.recipeName}</h2>
+      <div class="wrap-title-ingredients ${recipe.recipeIngredienst.length > 0 ? "" : "hidden"}"><h2 class="title-ingredients">Інгредієнти до ${recipe.recipeName}:</h2><button type="button" class="visible-btn">Показати</button> </div>
+      
                <form class="form-recepie-ingredients hidden" id=${recipe.index}>
                 <label class="label-title-recepie">
               Інгредієнти:
@@ -68,16 +68,16 @@ const updateMenu = () => {
             </label>
             <button type="submit" class="btn-dessert">Додати інгредієнт</button>
           </form>
-          <ul class="list-ingredients-recepie">
-          ${recipe.recipeIngredienst.map((itemReciperIng) => `<li class="list-ingredients-item"><p>${itemReciperIng.ingredients} — ${itemReciperIng.numb}</p> <button type="button" class="btn-dessert" data-deleteRe="delete" id=${itemReciperIng.index}>Видалити інгредієнт</button></li>`).join("")}
+          <ul class="list-ingredients-recepie hidden">
+          ${recipe.recipeIngredienst.map((itemReciperIng) => `<li class="list-ingredients-item"><p class="ingredients-text">${itemReciperIng.ingredients} — ${itemReciperIng.numb}</p> <button type="button" class="btn-dessert" data-deleteRe="delete" id=${itemReciperIng.index}>Видалити інгредієнт</button></li>`).join("")}
           </ul>
           </li>`
         )
         .join("")
     )
   );
-if (!data[0].recipeGroup[0]) return;
-    btnSuccessfullyDesert.classList.remove("hidden");
+  if (!data[0].recipeGroup[0]) return;
+  btnSuccessfullyDesert.classList.remove("hidden");
 };
 
 const createBtnFormMenu = (e) => {
@@ -97,6 +97,7 @@ const createFormMenu = (e) => {
 
 const createMenu = (e) => {
   e.preventDefault();
+  if(!e.currentTarget.desert.value) return
   const { desert } = e.currentTarget.elements;
   let data = JSON.parse(localStorage.getItem("menu"));
 
@@ -114,6 +115,7 @@ const createMenu = (e) => {
   updateMenu();
   desert.value = "";
   form.classList.add("hidden");
+  mainTitle.classList.add("hidden");
 };
 const menuRemove = (e) => {
   if (e.target.hasAttribute("data-delete")) {
@@ -121,6 +123,8 @@ const menuRemove = (e) => {
     listMenu.innerHTML = "";
     listIngredients.innerHTML = "";
     btnAddDesert.classList.remove("hidden");
+    btnSuccessfullyDesert.classList.add("hidden");
+     mainTitle.classList.remove("hidden");
   }
 };
 
@@ -158,15 +162,15 @@ const createForRecepieMenu = (e) => {
 const deleteForRecepieMenu = (e) => {
   if (e.target.hasAttribute("data-delete")) {
     const data = JSON.parse(localStorage.getItem("menu"));
-    if(!data) return
+    if (!data) return
     const indexRecipe = data[0].recipeGroup.findIndex(item => item.index === Number(e.target.id))
-    if(indexRecipe === -1) return
+    if (indexRecipe === -1) return
     data[0].recipeGroup.splice(indexRecipe, 1)
     localStorage.setItem("menu", JSON.stringify(data))
     btnSuccessfullyDesert.classList.add("hidden");
     updateMenu();
   }
-  }
+}
 
 
 
@@ -192,33 +196,49 @@ const formReceptIngrediensMenu = (e) => {
 const deleteIngredientsRecepie = (e) => {
   if (e.target.hasAttribute("data-deleteRe")) {
     let data = JSON.parse(localStorage.getItem("menu"));
-    if(!data) return
+    if (!data) return
     const indexRecipe = data[0].recipeGroup.findIndex(item => item.recipeIngredienst.some(ing => ing.index === Number(e.target.id)))
-    if(indexRecipe === -1) return
+    if (indexRecipe === -1) return
     const indexIngridient = data[0].recipeGroup[indexRecipe].recipeIngredienst.findIndex(ing => ing.index === Number(e.target.id))
-    if(indexIngridient === -1) return
+    if (indexIngridient === -1) return
     data[0].recipeGroup[indexRecipe].recipeIngredienst.splice(indexIngridient, 1)
     localStorage.setItem("menu", JSON.stringify(data))
     updateMenu();
-  }}
+  }
+}
 
 const successfullyDesert = (e) => {
   const data = JSON.parse(localStorage.getItem("menu"));
-  if(!data) return
+  if (!data) return
 
   let dataListMenu = JSON.parse(localStorage.getItem("listMenuDesert"));
-  if(!dataListMenu) {
-dataListMenu = []
+  if (!dataListMenu) {
+    dataListMenu = []
   }
 
   dataListMenu.push(data[0])
-  localStorage.setItem("listMenuDesert", JSON.stringify(dataListMenu)) 
+  localStorage.setItem("listMenuDesert", JSON.stringify(dataListMenu))
   localStorage.removeItem("menu");
   listMenu.innerHTML = "";
   listIngredients.innerHTML = "";
   btnSuccessfullyDesert.classList.add("hidden");
   btnAddDesert.classList.remove("hidden");
 }
+
+
+
+const visibleIngredients = (e) => {
+  if (e.target.classList.contains("visible-btn")) {
+    const recipeItem = e.target.closest("li");
+    if (!recipeItem) return;
+    const itemIngredients = recipeItem.querySelector(".list-ingredients-recepie");
+
+    if (itemIngredients) {
+      itemIngredients.classList.toggle("hidden");
+    }
+  }
+}
+
 
 listMenu.addEventListener("click", menuRemove);
 form.addEventListener("submit", createMenu);
@@ -231,6 +251,8 @@ listMenu.addEventListener("click", createFormMenu);
 listIngredients.addEventListener("click", createForRecepieMenu);
 listIngredients.addEventListener("click", deleteForRecepieMenu);
 listIngredients.addEventListener("click", deleteIngredientsRecepie);
+listIngredients.addEventListener("click", visibleIngredients);
+
 
 btnAddDesert.addEventListener("click", createBtnFormMenu);
 btnSuccessfullyDesert.addEventListener("click", successfullyDesert)
