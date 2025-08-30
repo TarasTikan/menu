@@ -72,27 +72,27 @@ body {
 
 
 .nav-link {
-      text-transform: uppercase;
+  text-transform: uppercase;
   color: #6e1a2b;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 600;
   line-height: 21px;
   text-decoration: none;
-padding: 27px 25px;
+ padding: 25px 10px;
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), border-radius 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .nav-link:hover {
-background-color: white;
-border-radius: 16px;
+  background-color: white;
+  border-radius: 16px;
 }
-/* header  */
 
-
-
-
-
-
-
+@media screen and (min-width: 400px) {
+  .nav-link {
+padding: 27px 25px;
+font-size: 13px;
+  }
+}
 
 .list-menu-recepie {
     display: flex;
@@ -104,9 +104,6 @@ border-radius: 16px;
 
 .menu-recepie {
     padding-top: 20px;
-
-      /* background-color: #ffe0e4;
-     background-image: url("./img/5776d08a-0ead-46d2-b4e0-7dea71a1c620.png"); */
 }
 
 .menu-title-recepie {
@@ -129,13 +126,10 @@ border-radius: 16px;
 
 .dessert-card {
     background-color: #ffebed;
-    /* світло-рожевий */
     border-radius: 16px;
    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   border: 2px solid white;
     width: 250px;
-    /* width: 400px; */
-    /* щоб не розтягувалась */
     padding: 16px;
     height: 100%;
     display: flex;
@@ -161,7 +155,7 @@ gap: 12px;
 
 
 .recipe {
-      background-color: #ffeef0; /* ще світліший рожевий */
+      background-color: #ffeef0; 
   border-radius: 12px;
   padding: 16px 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
@@ -197,9 +191,9 @@ margin-bottom: 5px;
 
 .ingredients-list-text {
 font-size: 16px;
-font-weight: 400;      /* темно-сірий, не чорний */
-line-height: 1.6;      /* зручний інтервал */
-list-style-type: disc; /* кружечки */
+font-weight: 400;      
+line-height: 1.6;      
+list-style-type: disc; 
 color: #6e1a2b;
 }
 
