@@ -90,7 +90,10 @@ const createBtnFormMenu = (e) => {
 const createFormMenu = (e) => {
   if (e.target.hasAttribute("data-add")) {
     const formIngredients = document.querySelector(".form-title-recepie");
-    formIngredients.classList.remove("hidden");
+    if (formIngredients) {
+      formIngredients.classList.toggle("hidden");
+      e.target.textContent = formIngredients.classList.contains("hidden") ? "Додати до десерту рецепт" : "Приховати форму рецепту"
+    }
     form.classList.add("hidden");
   }
 };
@@ -151,9 +154,10 @@ const createFormIngredients = (e) => {
     const formRecepieIngredients = liElement.querySelector(
       ".form-recepie-ingredients"
     );
-
-    formRecepieIngredients.classList.remove("hidden");
-
+    if (formRecepieIngredients) {
+      formRecepieIngredients.classList.toggle("hidden");
+      e.target.textContent = formRecepieIngredients.classList.contains("hidden") ? "Додати до інгредієнт" : "Приховати форму інгредієнту"
+    }
   }
 };
 

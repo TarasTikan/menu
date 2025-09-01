@@ -115,6 +115,10 @@ body {
   }
 }
 
+.section-form-menu {
+padding-top: 20px;
+}
+
 .menu-title-recepie {
   font-size: 40px;
   font-weight: 700;
