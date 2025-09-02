@@ -103,12 +103,6 @@ body {
   border: 2px solid white;
 }
 
-@media screen and (min-width: 400px) {
-  .section-form-menu .container {
-    width: 350px;
-  }
-}
-
 @media screen and (min-width: 600px) {
   .section-form-menu .container {
     width: 550px;
@@ -180,7 +174,8 @@ padding-top: 20px;
 
 .btn-dessert {
   color: #6e1a2b;
-  font-size: 10px;
+  font-size: 9px;
+      width: 100px;
   font-weight: 500;
   line-height: 15px;
   letter-spacing: 0.5px;
@@ -375,6 +370,43 @@ padding-top: 20px;
 }
 
 
+
+.form-edit-ingredients {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.label-edit-ingredients {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #6e1a2b;
+  display: flex;
+text-align: center;
+  flex-direction: column;
+}
+
+.input-edit-ingredients {
+ width: 90%;
+  height: 30px;
+  background-color: #ffebed;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 16px;
+  padding-left: 15px;
+  color: #6e1a2b;
+}
+
+.input-edit-numb {
+  width: 70px;
+  height: 30px;
+  background-color: #ffebed;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 16px;
+  padding-left: 15px;
+  color: #6e1a2b;
+}
 .list-ingredients {
   display: flex;
   flex-direction: column;
@@ -391,6 +423,23 @@ padding-top: 20px;
   color: #6e1a2b;
 }
 
+.wrap-btn-recepie {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.wrap-btn {
+  display: flex;
+}
+.form-edit-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
 @media screen and (min-width: 600px) {
   .title-recepie {
     font-size: 20px;
