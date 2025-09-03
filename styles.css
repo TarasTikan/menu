@@ -175,14 +175,13 @@ padding-top: 20px;
 .btn-dessert {
   color: #6e1a2b;
   font-size: 9px;
-      width: 100px;
   font-weight: 500;
   line-height: 15px;
   letter-spacing: 0.5px;
   text-align: center;
   text-transform: uppercase;
   border: 2px solid rgb(255, 255, 255);
-  height: 50px;
+  padding: 10px;
   border-radius: 16px;
   background-color: #ffebed;
   margin: 0 auto;
@@ -195,7 +194,8 @@ padding-top: 20px;
 .btn-dessert:hover {
   background-color: #f48fa3;
   border-color: transparent;
-  color: white;
+  fill: white;
+   color: white;
   cursor: pointer;
 }
 
@@ -208,7 +208,6 @@ padding-top: 20px;
   text-align: center;
   text-transform: uppercase;
   border: 2px solid rgb(255, 255, 255);
-  width: 100%;
   padding: 10px;
   border-radius: 16px;
   background-color: #ffebed;
@@ -219,16 +218,15 @@ padding-top: 20px;
     cursor 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media screen and (min-width: 600px) {
-  .btn-create-recepie {
-    width: 100%;
-  }
+svg {
+  pointer-events: none; /* Щоб кліки йшли на кнопку, а не на саму іконку */
 }
 
 .btn-create-recepie:hover {
   background-color: #f48fa3;
   border-color: transparent;
   color: white;
+    fill: white;
   cursor: pointer;
 }
 
@@ -435,14 +433,13 @@ text-align: center;
   color: #6e1a2b;
 }
 
-.wrap-btn-recepie {
+/* .wrap-btn-recepie {
   display: flex;
   gap: 10px;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
   
-}
+} */
 
 .wrap-btn {
   display: flex;
@@ -504,6 +501,7 @@ text-align: center;
   gap: 20px;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .form-recepie-ingredients {

@@ -33,7 +33,15 @@ const updateListMenu = () => {
             )
             .join("")}
           </ul>
-          <button type="button" class="btn-delete-dessert" id=${item.index}>Видалити десерт</button>
+          <div class="wrap-btn">
+          ${!item.notes ? `<p><strong>Нотатки:</strong> Немає нотаток</p>` : `<strong>Нотатки:</strong> ${item.notes}`}
+          <button type="button" class="btn-dessert" data-notes="notes" id=${item.index}><svg class="icon-notes" width="15" height="15">
+  <use href="./img/icons.svg#icon-notes"></use>
+</svg></button>
+          <button type="button" class="btn-dessert" data-delete="delete" id=${item.index}><svg class="icon-delete" width="15" height="15">
+  <use href="./img/icons.svg#icon-delete"></use>
+</svg></button>
+          </div>
         </li>
       `
       )
@@ -42,7 +50,7 @@ const updateListMenu = () => {
 };
 
 const removeDessert = e => {
-  if (e.target.nodeName === "BUTTON") {
+  if (e.target.hasAttribute('data-delete')) {
     const data = JSON.parse(localStorage.getItem("listMenuDesert"))
     const findDessert = data.findIndex(item => item.index === Number(e.target.id))
     data.splice(findDessert, 1)
@@ -50,5 +58,34 @@ const removeDessert = e => {
     updateListMenu()
   }
 }
+
+const createFormNotesDessert = e => {
+
+  if (e.target.hasAttribute('data-notes')) {
+e.target.remove()
+const wrapBtn = listMenu.querySelector('.wrap-btn')
+wrapBtn.insertAdjacentHTML('beforeend', `
+<form class="form-notes" id=${e.target.id}>
+  <textarea name="notes" class="textarea-notes" placeholder="Введіть нотатки..." ></textarea>
+  <button type="submit" class="btn-dessert">Зберегти</button></form>`)
+}
+
+}
+
+const notesDessert = e => {
+e.preventDefault()
+const data = JSON.parse(localStorage.getItem("listMenuDesert")) 
+const findDessert = data.find(item => item.index === Number(e.target.id))
+const {notes} = e.target.elements
+findDessert.notes = notes.value
+localStorage.setItem("listMenuDesert", JSON.stringify(data))
+updateListMenu()
+
+
+}
+
+listMenu.addEventListener('submit', notesDessert)
+
+listMenu.addEventListener('click', createFormNotesDessert)
 listMenu.addEventListener('click', removeDessert)
 updateListMenu();
