@@ -328,10 +328,12 @@ padding-top: 20px;
   }
 }
 
+
+
 .input-title-recepie {
   margin-top: 10px;
   width: 100%;
-  height: 40px;
+  height: 30px;
   background-color: #ffebed;
   border: 2px solid rgb(255, 255, 255);
   border-radius: 16px;
@@ -343,6 +345,11 @@ padding-top: 20px;
   border: 2px solid #6e1a2b;
 }
 
+@media screen and (min-width: 600px) {
+  .input-title-recepie {
+  height: 40px;
+}
+}
 
 .label-input-desert {
   font-size: 20px;
@@ -353,12 +360,17 @@ padding-top: 20px;
 
 
 .label-title-recepie {
-  font-size: 15px;
+  font-size: 11px;
   font-weight: 600;
   line-height: 20px;
   color: #6e1a2b;
 }
 
+@media screen and (min-width: 600px) {
+.label-title-recepie {
+  font-size: 15px;
+}
+}
 
 .form-title-recepie {
   display: flex;
@@ -430,9 +442,11 @@ text-align: center;
   flex-direction: column;
   justify-content: center;
 }
+
 .wrap-btn {
   display: flex;
 }
+
 .form-edit-menu {
   display: flex;
   flex-direction: column;

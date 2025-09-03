@@ -180,23 +180,7 @@ const deleteForRecepieMenu = (e) => {
   }
 }
 
-const formReceptIngrediensMenu = (e) => {
-  e.preventDefault();
-  const { ingredients, numb } = e.target.elements;
-  const data = getMenuData();
-  if (!data) return;
-  const indexRecipe = data.recipeGroup.findIndex(
-    (item) => item.index === Number(e.target.id)
-  );
-  if (indexRecipe === -1) return;
-  data.recipeGroup[indexRecipe].recipeIngredienst.push({
-    index: generateUniqueNumber(),
-    ingredients: ingredients.value,
-    numb: numb.value,
-  });
-  setMenuData(data);
-  updateMenu();
-};
+
 
 const deleteIngredientsRecepie = (e) => {
   if (e.target.hasAttribute("data-deleteRe")) {
@@ -262,7 +246,7 @@ const createEditFormIngredients = (e) => {
  const itemIngredients = recipeItem.querySelector(".ingredients-text");
   const btnDeleteIngredient = recipeItem.querySelector("button[data-deleteRe='delete']");
  itemIngredients.remove();
- recipeItem.insertAdjacentHTML("afterbegin", `<form class="form-edit-ingredients" id=${data.recipeGroup[indexRecipe].recipeIngredienst[indexIngridient].index}>
+ recipeItem.insertAdjacentHTML("afterbegin", `<form class="form-edit-ingredients" name="edit-ingredients" id=${data.recipeGroup[indexRecipe].recipeIngredienst[indexIngridient].index}>
  <label class="label-edit-ingredients">
  Ингредиенты:
  <input type="text" name="ingredients" class="input-edit-ingredients" value="${data.recipeGroup[indexRecipe].recipeIngredienst[indexIngridient].ingredients}" required/>
@@ -280,6 +264,7 @@ btnDeleteIngredient.remove();
 
 const saveEditFormIngredients = (e) => {
   e.preventDefault();
+   if (e.target.name === "edit-ingredients") {
   const { ingredients, numb } = e.target.elements;
   const data = getMenuData();
   if (!data) return;
@@ -291,32 +276,81 @@ const saveEditFormIngredients = (e) => {
   data.recipeGroup[indexRecipe].recipeIngredienst[indexIngridient].numb = numb.value;
   setMenuData(data);
   updateMenu();
+   }
 }
 
 const createFormEditMenu = (e) => {
  if (e.target.hasAttribute("data-edit")) {
     const data = getMenuData();
   const indexRecipe = data.recipeGroup.findIndex(item => item.index === Number(e.target.id))
-  console.log(indexRecipe);
    if (indexRecipe === -1) return
    const recipeItem = e.target.closest("li");
  const titleRecepie = recipeItem.querySelector(".title-recepie");
   const btnDeleteRecepie = recipeItem.querySelector("button[data-delete='delete']");
   const btnAddRecepie = recipeItem.querySelector("button[data-add='add']");
  titleRecepie.remove();
- recipeItem.insertAdjacentHTML("afterbegin", `<form class="form-edit-menu" id=${data.recipeGroup[indexRecipe].index}>
+ recipeItem.insertAdjacentHTML("afterbegin", `<form class="form-edit-menu" name="edit-menu" id=${data.recipeGroup[indexRecipe].index}>
  <label class="label-edit-ingredients">
- Ингредиенты:
- <input type="text" name="ingredients" class="input-title-recepie" value="${data.recipeGroup[indexRecipe].recipeName}" required/>
+ Рецепт
+ <input type="text" name="recipeName" class="input-title-recepie" value="${data.recipeGroup[indexRecipe].recipeName}" required/>
  </label>
   <label class="label-edit-ingredients">
- <button type="submit" class="btn-dessert">Зберегти</button>
- </form>`)
+  <div class="wrap-btn">
+    <button type="submit" class="btn-dessert">Зберегти</button>
+    <button type="button" class="btn-dessert" data-cancel="cancel">Скасувати</button>
+  </div>
+ </form>
+ `)
  e.target.remove();
 btnDeleteRecepie.remove();
 btnAddRecepie.remove();
   }
 
+}
+
+const formReceptIngrediensMenu = (e) => {
+  e.preventDefault();
+  if (e.target.name !== "edit-ingredients") return;
+  const { ingredients, numb } = e.target.elements;
+  const data = getMenuData();
+  if (!data) return;
+  const indexRecipe = data.recipeGroup.findIndex(
+    (item) => item.index === Number(e.target.id)
+  );
+  if (indexRecipe === -1) return;
+  console.log(ingredients)
+  data.recipeGroup[indexRecipe].recipeIngredienst.push({
+    index: generateUniqueNumber(),
+    ingredients: ingredients.value || null,
+    numb: numb.value,
+  });
+  setMenuData(data);
+  updateMenu();
+};
+
+const saveFormEditMenu = e => {
+    e.preventDefault();
+   if (e.target.name !== "edit-menu") return;
+  const { recipeName } = e.target.elements;
+  const data = getMenuData();
+  if (!data) return;
+  const indexRecipe = data.recipeGroup.findIndex(item => item.index === Number(e.target.id))
+  if (indexRecipe === -1) return
+   data.recipeGroup[indexRecipe].recipeName = recipeName.value
+  setMenuData(data);
+  updateMenu();
+    
+
+}
+
+const cancelFormEditMenu = (e) => {
+  if(e.target.hasAttribute('data-cancel')) {
+ const recipeItem = e.target.closest("li");
+   const formEditMenu = recipeItem.querySelector(".form-edit-menu");
+   formEditMenu.remove()
+   updateMenu();
+  }
+ 
 }
 
 btnAddDesert.addEventListener("click", createBtnFormMenu); // створює форму для додавання десерту
@@ -325,14 +359,16 @@ form.addEventListener("submit", createMenu); // створення десерт�
 
 
 listMenu.addEventListener("click", createFormMenu); // створює форму для додавання рецепта
+listIngredients.addEventListener("submit", saveFormEditMenu); // збереження відредагованого рецепту
+listIngredients.addEventListener("click", cancelFormEditMenu); // скасування відредагованого рецепту
 listIngredients.addEventListener("click", createFormEditMenu); // створює форму для редагування рецепта
 listMenu.addEventListener("submit", formReceptMenu); // створення рецепта
 listIngredients.addEventListener("click", deleteForRecepieMenu); // видалення рецепта
 
 
 listIngredients.addEventListener("click", createFormIngredients); // створює форму для додавання інгредієнтів
-listIngredients.addEventListener("submit", formReceptIngrediensMenu);  // Створеняя інгредієнта
 listIngredients.addEventListener("click", deleteIngredientsRecepie); // видалення інгредієнта
+listIngredients.addEventListener("submit", formReceptIngrediensMenu);  // Створеняя інгредієнта
 listIngredients.addEventListener("click", createEditFormIngredients); // cтворення форми редагування інгредієнта
 listIngredients.addEventListener("submit", saveEditFormIngredients); // збереження відредагованого інгредієнта
 listIngredients.addEventListener("click", visibleIngredients); // показує/приховує інгредієнти
