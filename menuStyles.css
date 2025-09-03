@@ -234,7 +234,6 @@ width: 100%;
 }
 
 .wrap-btn {
-  margin-top: 20px;
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -252,4 +251,11 @@ width: 100%;
   font-family: 'Montserrat', sans-serif;
   resize: none;
   margin-bottom: 5px;
+}
+
+.describe-dessert {
+   margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #6e1a2b;
 }

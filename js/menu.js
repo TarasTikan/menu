@@ -33,8 +33,8 @@ const updateListMenu = () => {
             )
             .join("")}
           </ul>
+          ${!item.notes ? `<p class="describe-dessert"><strong>Нотатки:</strong> Немає нотаток</p>` : `<p class="describe-dessert"><strong>Нотатки:</strong> ${item.notes}</p>`}
           <div class="wrap-btn">
-          ${!item.notes ? `<p><strong>Нотатки:</strong> Немає нотаток</p>` : `<strong>Нотатки:</strong> ${item.notes}`}
           <button type="button" class="btn-dessert" data-notes="notes" id=${item.index}><svg class="icon-notes" width="15" height="15">
   <use href="./img/icons.svg#icon-notes"></use>
 </svg></button>
@@ -64,7 +64,7 @@ const createFormNotesDessert = e => {
   if (e.target.hasAttribute('data-notes')) {
 e.target.remove()
 const wrapBtn = listMenu.querySelector('.wrap-btn')
-wrapBtn.insertAdjacentHTML('beforeend', `
+wrapBtn.insertAdjacentHTML('beforebegin', `
 <form class="form-notes" id=${e.target.id}>
   <textarea name="notes" class="textarea-notes" placeholder="Введіть нотатки..." ></textarea>
   <button type="submit" class="btn-dessert">Зберегти</button></form>`)
