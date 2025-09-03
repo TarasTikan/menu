@@ -310,7 +310,7 @@ btnAddRecepie.remove();
 
 const formReceptIngrediensMenu = (e) => {
   e.preventDefault();
-  if (e.target.name !== "edit-ingredients") return;
+   if (!e.target.elements.ingredients || !e.target.elements.numb) return;
   const { ingredients, numb } = e.target.elements;
   const data = getMenuData();
   if (!data) return;
