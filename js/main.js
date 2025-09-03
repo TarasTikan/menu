@@ -19,6 +19,7 @@ const renderFormRecepie = (data) => {
             <div class="wrap-btn">
             <button type="button" class="btn-create-recepie" data-delete="delete" id=${data.index}>Видалити десерт</button>
             <button type="button" class="btn-create-recepie" data-add="add" id=${data.index}>Додати до десерту рецепт</button>
+            <button type="button" class="btn-create-recepie" data-edit="edit" id=${data.index}>Відредагувати десерт</button>
             </div>
             <form class="form-title-recepie hidden" id=${data.index}>
             <label class="label-title-recepie">
@@ -136,6 +137,7 @@ const menuRemove = (e) => {
 
 const formReceptMenu = (e) => {
   e.preventDefault();
+  if (!e.target.elements.nameRecipe) return;
   const { nameRecipe } = e.target.elements;
 
   const data = getMenuData();
@@ -294,7 +296,6 @@ const createFormEditMenu = (e) => {
  Рецепт
  <input type="text" name="recipeName" class="input-title-recepie" value="${data.recipeGroup[indexRecipe].recipeName}" required/>
  </label>
-  <label class="label-edit-ingredients">
   <div class="wrap-btn">
     <button type="submit" class="btn-dessert">Зберегти</button>
     <button type="button" class="btn-dessert" data-cancel="cancel">Скасувати</button>
@@ -318,7 +319,6 @@ const formReceptIngrediensMenu = (e) => {
     (item) => item.index === Number(e.target.id)
   );
   if (indexRecipe === -1) return;
-  console.log(ingredients)
   data.recipeGroup[indexRecipe].recipeIngredienst.push({
     index: generateUniqueNumber(),
     ingredients: ingredients.value || null,
@@ -339,8 +339,6 @@ const saveFormEditMenu = e => {
    data.recipeGroup[indexRecipe].recipeName = recipeName.value
   setMenuData(data);
   updateMenu();
-    
-
 }
 
 const cancelFormEditMenu = (e) => {
@@ -353,9 +351,56 @@ const cancelFormEditMenu = (e) => {
  
 }
 
+
+const createFormEditDessert = (e) => {
+ if (e.target.hasAttribute("data-edit")) {
+const titleDessert = listMenu.querySelector('.title-desert')
+  const data = getMenuData();
+    const btnDeleteDessert = listMenu.querySelector("button[data-delete='delete']");
+  const btnAddDessert = listMenu.querySelector("button[data-add='add']");
+  e.target.remove()
+  btnAddDessert.remove()
+  btnDeleteDessert.remove()
+titleDessert.remove()
+ listMenu.insertAdjacentHTML("afterbegin", `<form class="form-edit-dessert" name="edit-dessert" id=${data.recipeGroup.index}>
+ <input type="text" name="desertName" class="input-title-recepie" value="${data.desertName
+}" required/>
+
+  <div class="wrap-btn">
+    <button type="submit" class="btn-dessert">Зберегти</button>
+    <button type="button" class="btn-dessert" data-cancel="cancel">Скасувати</button>
+  </div>
+ </form>
+ `)
+ }
+} 
+
+
+const saveFormEditDessert = e => {
+   e.preventDefault();
+   if (e.target.name !== "edit-dessert") return;
+  const { desertName } = e.target.elements;
+  const data = getMenuData();
+  if (!data) return;
+   data.desertName = desertName.value
+  setMenuData(data);
+  updateMenu();
+}
+
+const cancelFormEditDessert = e => {
+    if(e.target.hasAttribute('data-cancel')) {
+   const formEditDessert = listMenu.querySelector(".form-edit-dessert");
+   formEditDessert.remove()
+   updateMenu();
+  }
+}
+
 btnAddDesert.addEventListener("click", createBtnFormMenu); // створює форму для додавання десерту
 listMenu.addEventListener("click", menuRemove); // видалення десерту
 form.addEventListener("submit", createMenu); // створення десерту
+listMenu.addEventListener("click", createFormEditDessert); // створює форму для редагування десерту
+listMenu.addEventListener("submit", saveFormEditDessert); // збереження відредагованого десерту
+listMenu.addEventListener("click", cancelFormEditDessert); // скасування відредагованого рецепту
 
 
 listMenu.addEventListener("click", createFormMenu); // створює форму для додавання рецепта
