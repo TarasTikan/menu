@@ -1,10 +1,11 @@
 const listMenu = document.querySelector(".list-menu-recepie");
 const menuTitle = document.querySelector('.menu-title-recepie')
-const filtrDessert = document.querySelector('.filtr-menu')
+const formFilter = document.querySelector('.form-filtr')
 const updateListMenu = (filtrData) => {
   const data = filtrData || JSON.parse(localStorage.getItem("listMenuDesert"))
   if (!data || data.length === 0) {
     menuTitle.textContent = "Немає десертів у меню \u{1F370}";
+    formFilter.remove()
   }else {
     menuTitle.textContent = "Меню";
   }
@@ -94,7 +95,7 @@ const filtrDessertMenu = e => {
     updateListMenu(filtrDessert)
 }
 
-filtrDessert.addEventListener("input", filtrDessertMenu)
+formFilter.addEventListener("input", filtrDessertMenu)
 
 listMenu.addEventListener('submit', notesDessert)
 
