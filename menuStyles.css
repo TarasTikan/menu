@@ -257,6 +257,7 @@ width: 100%;
   margin-bottom: 10px;
   font-size: 14px;
   color: #6e1a2b;
+  white-space: pre-line;
 }
 
 .form-notes {
