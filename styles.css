@@ -184,7 +184,6 @@ padding-top: 20px;
   padding: 10px;
   border-radius: 16px;
   background-color: #ffebed;
-  margin: 0 auto;
   transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -384,7 +383,6 @@ svg {
 .form-edit-ingredients {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 10px;
 }
 
@@ -462,6 +460,7 @@ text-align: center;
 }
 
 .ingredients-text {
+  margin-right: auto;
   font-size: 13px;
   font-weight: 400;
   line-height: 20px;
@@ -520,7 +519,6 @@ text-align: center;
 
 .list-ingredients-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 10px;
 }

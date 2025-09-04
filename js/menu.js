@@ -1,10 +1,14 @@
 const listMenu = document.querySelector(".list-menu-recepie");
 const menuTitle = document.querySelector('.menu-title-recepie')
-const updateListMenu = () => {
-  const data = JSON.parse(localStorage.getItem("listMenuDesert"));
+const filtrDessert = document.querySelector('.filtr-menu')
+const updateListMenu = (filtrData) => {
+  const data = filtrData || JSON.parse(localStorage.getItem("listMenuDesert"))
   if (!data || data.length === 0) {
     menuTitle.textContent = "Немає десертів у меню \u{1F370}";
+  }else {
+    menuTitle.textContent = "Меню";
   }
+
   listMenu.innerHTML = "";
   listMenu.insertAdjacentHTML(
     "afterbegin",
@@ -51,6 +55,8 @@ const updateListMenu = () => {
 
 const removeDessert = e => {
   if (e.target.hasAttribute('data-delete')) {
+    const isComing = confirm("Ти впевнений(а), що хочеш видалити цей десерт?")
+    if (!isComing) return
     const data = JSON.parse(localStorage.getItem("listMenuDesert"))
     const findDessert = data.findIndex(item => item.index === Number(e.target.id))
     data.splice(findDessert, 1)
@@ -62,8 +68,8 @@ const removeDessert = e => {
 const createFormNotesDessert = e => {
 
   if (e.target.hasAttribute('data-notes')) {
-e.target.remove()
-const wrapBtn = listMenu.querySelector('.wrap-btn')
+    const wrapBtn = e.target.closest(".wrap-btn");
+e.target.remove();
 wrapBtn.insertAdjacentHTML('beforebegin', `
 <form class="form-notes" id=${e.target.id}>
   <textarea name="notes" class="textarea-notes" placeholder="Введіть нотатки..." ></textarea>
@@ -80,9 +86,16 @@ const {notes} = e.target.elements
 findDessert.notes = notes.value
 localStorage.setItem("listMenuDesert", JSON.stringify(data))
 updateListMenu()
-
-
 }
+
+const filtrDessertMenu = e => {
+  if(!e) return
+    const data = JSON.parse(localStorage.getItem("listMenuDesert"))
+  const filtrDessert = data.filter(item => item.desertName.includes(e.target.value))
+    updateListMenu(filtrDessert)
+}
+
+filtrDessert.addEventListener("input", filtrDessertMenu)
 
 listMenu.addEventListener('submit', notesDessert)
 
