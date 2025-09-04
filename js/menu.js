@@ -89,7 +89,6 @@ updateListMenu()
 }
 
 const filtrDessertMenu = e => {
-  if(!e) return
     const data = JSON.parse(localStorage.getItem("listMenuDesert"))
   const filtrDessert = data.filter(item => item.desertName.includes(e.target.value))
     updateListMenu(filtrDessert)
