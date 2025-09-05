@@ -364,17 +364,14 @@ const cancelFormEditMenu = (e) => {
 };
 
 const createFormEditDessert = (e) => {
-  if (e.target.hasAttribute("data-edit")) {
-    const titleDessert = listMenu.querySelector(".title-desert");
-    const data = getMenuData();
-    const btnDeleteDessert = listMenu.querySelector(
-      "button[data-delete='delete']"
-    );
-    const btnAddDessert = listMenu.querySelector("button[data-add='add']");
-    e.target.remove();
-    btnAddDessert.remove();
-    btnDeleteDessert.remove();
-    titleDessert.remove();
+if (e.target.hasAttribute("data-edit")) { 
+  const data = getMenuData(); 
+  const btnDeleteDessert = listMenu.querySelector( "button[data-delete='delete']" ); 
+  const btnAddDessert = listMenu.querySelector("button[data-add='add']"); 
+  e.target.remove(); 
+  btnAddDessert.remove(); 
+  btnDeleteDessert.remove(); 
+  listMenu.querySelector(".title-dessert").remove();
     listMenu.insertAdjacentHTML(
       "afterbegin",
       `<form class="form-edit-dessert" name="edit-dessert" id=${data.recipeGroup.index}>
