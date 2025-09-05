@@ -28,6 +28,10 @@ fieldset {
   padding: 0;
 }
 
+svg {
+  pointer-events: none; 
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #ffe0e4;

@@ -2,24 +2,25 @@ const mainTitle = document.querySelector(".menu-title-recepie");
 const form = document.querySelector(".form-container");
 const listMenu = document.querySelector(".list-menu");
 const listIngredients = document.querySelector(".list-ingredients");
-const btnAddDesert = document.querySelector(".add-btn-desert");
-const btnSuccessfullyDesert = document.querySelector(
+const btnAddDessert = document.querySelector(".add-btn-desert");
+const btnSuccessfullyDessert = document.querySelector(
   ".btn-successfully-desert"
 );
 
 const generateUniqueNumber = () => {
   return Date.now() + Math.floor(Math.random() * 1000);
 };
-const getMenuData = () => JSON.parse(localStorage.getItem("menu"));
-const setMenuData = (data) =>
-  localStorage.setItem("menu", JSON.stringify(data));
 
+const getMenuData = () => JSON.parse(localStorage.getItem("menu"));
+
+const setMenuData = (data) => localStorage.setItem("menu", JSON.stringify(data));
+const findById = (data, id) => data.findIndex((item) => item.index === Number(id));
 const renderFormRecepie = (data) => {
   listMenu.innerHTML = "";
   return listMenu.insertAdjacentHTML(
     "afterbegin",
     `
-            <h2 class="title-desert">${data.desertName}</h2>
+            <h2 class="title-dessert">${data.desertName}</h2>
             <div class="wrap-btn">
             <button type="button" class="btn-create-recepie" data-add="add" id=${data.index}>Додати до десерту рецепт</button>
             <button type="button" class="btn-create-recepie" data-edit="edit" id=${data.index}><svg class="icon-pencil" width="15" height="15">
@@ -40,6 +41,7 @@ const renderFormRecepie = (data) => {
           `
   );
 };
+
 const renderListIngredients = (data) => {
   listIngredients.innerHTML = "";
   listIngredients.insertAdjacentHTML(
@@ -95,9 +97,8 @@ const renderListIngredients = (data) => {
 
 const updateMenu = () => {
   const data = getMenuData();
-
   if (!data) {
-    return btnAddDesert.classList.remove("hidden");
+    return btnAddDessert.classList.remove("hidden");
   }
   mainTitle.classList.add("hidden");
 
@@ -105,12 +106,12 @@ const updateMenu = () => {
   renderListIngredients(data);
   if (!data.recipeGroup[0]) return;
   if (!data.recipeGroup[0].recipeIngredienst[0]) return;
-  btnSuccessfullyDesert.classList.remove("hidden");
+  btnSuccessfullyDessert.classList.remove("hidden");
 };
 
 const createBtnFormMenu = (e) => {
   form.classList.remove("hidden");
-  btnAddDesert.classList.add("hidden");
+  btnAddDessert.classList.add("hidden");
 };
 
 const createFormMenu = (e) => {
@@ -148,8 +149,8 @@ const menuRemove = (e) => {
     localStorage.removeItem("menu");
     listMenu.innerHTML = "";
     listIngredients.innerHTML = "";
-    btnAddDesert.classList.remove("hidden");
-    btnSuccessfullyDesert.classList.add("hidden");
+    btnAddDessert.classList.remove("hidden");
+    btnSuccessfullyDessert.classList.add("hidden");
     mainTitle.classList.remove("hidden");
   }
 };
@@ -193,61 +194,32 @@ const deleteForRecepieMenu = (e) => {
   if (e.target.hasAttribute("data-delete")) {
     const data = getMenuData();
     if (!data) return;
-    const indexRecipe = data.recipeGroup.findIndex(
-      (item) => item.index === Number(e.target.id)
-    );
-    if (indexRecipe === -1) return;
-    data.recipeGroup.splice(indexRecipe, 1);
+    data.recipeGroup = data.recipeGroup.filter((item) => item.index !== Number(e.target.id));
     setMenuData(data);
-
-    btnSuccessfullyDesert.classList.add("hidden");
+    btnSuccessfullyDessert.classList.add("hidden");
     updateMenu();
   }
 };
+
 
 const deleteIngredientsRecepie = (e) => {
   if (e.target.hasAttribute("data-deleteRe")) {
     const data = getMenuData();
     if (!data) return;
-    const indexRecipe = data.recipeGroup.findIndex((item) =>
-      item.recipeIngredienst.some((ing) => ing.index === Number(e.target.id))
+    const ingredientId = Number(e.target.id);
+    const recipeIndex = data.recipeGroup.findIndex((item) =>
+      item.recipeIngredienst.some((ing) => ing.index === ingredientId)
     );
-    if (indexRecipe === -1) return;
-    const indexIngridient = data.recipeGroup[
-      indexRecipe
-    ].recipeIngredienst.findIndex((ing) => ing.index === Number(e.target.id));
-    if (indexIngridient === -1) return;
-    data.recipeGroup[indexRecipe].recipeIngredienst.splice(indexIngridient, 1);
+    if (recipeIndex === -1) return;
+    const ingredientIndex = data.recipeGroup[recipeIndex].recipeIngredienst.findIndex((ing) => ing.index === ingredientId);
+    if (ingredientIndex === -1) return;
+    data.recipeGroup[recipeIndex].recipeIngredienst.splice(ingredientIndex, 1);
     setMenuData(data);
-    btnSuccessfullyDesert.classList.add("hidden");
+    btnSuccessfullyDessert.classList.add("hidden");
     updateMenu();
   }
 };
 
-const successfullyDesert = (e) => {
-  const data = getMenuData();
-  if (!data) return;
-  let dataListMenu = JSON.parse(localStorage.getItem("listMenuDesert"));
-  if (!dataListMenu) {
-    dataListMenu = [];
-  }
-
-  dataListMenu.push(data);
-  localStorage.setItem("listMenuDesert", JSON.stringify(dataListMenu));
-  localStorage.removeItem("menu");
-  listMenu.innerHTML = "";
-  listIngredients.innerHTML = "";
-  btnSuccessfullyDesert.classList.add("hidden");
-  btnAddDesert.classList.remove("hidden");
-  mainTitle.classList.remove("hidden");
-  Toastify({
-    text: "Десерт успішно створено",
-    className: "info",
-    style: {
-      background: "linear-gradient(to right, #00b09b, #96c93d)",
-    },
-  }).showToast();
-};
 
 const visibleIngredients = (e) => {
   if (e.target.classList.contains("visible-btn")) {
@@ -306,21 +278,17 @@ const saveEditFormIngredients = (e) => {
   e.preventDefault();
   if (e.target.name === "edit-ingredients") {
     const { ingredients, numb } = e.target.elements;
+    const ingredientId = Number(e.target.id);
     const data = getMenuData();
     if (!data) return;
     const indexRecipe = data.recipeGroup.findIndex((item) =>
-      item.recipeIngredienst.some((ing) => ing.index === Number(e.target.id))
+      item.recipeIngredienst.some((ing) => ing.index === ingredientId)
     );
     if (indexRecipe === -1) return;
-    const indexIngridient = data.recipeGroup[
-      indexRecipe
-    ].recipeIngredienst.findIndex((ing) => ing.index === Number(e.target.id));
+    const indexIngridient = findById(data.recipeGroup[indexRecipe].recipeIngredienst, ingredientId)
     if (indexIngridient === -1) return;
-    data.recipeGroup[indexRecipe].recipeIngredienst[
-      indexIngridient
-    ].ingredients = ingredients.value;
-    data.recipeGroup[indexRecipe].recipeIngredienst[indexIngridient].numb =
-      numb.value;
+    data.recipeGroup[indexRecipe].recipeIngredienst[indexIngridient].ingredients = ingredients.value;
+    data.recipeGroup[indexRecipe].recipeIngredienst[indexIngridient].numb = numb.value;
     setMenuData(data);
     updateMenu();
   }
@@ -329,15 +297,11 @@ const saveEditFormIngredients = (e) => {
 const createFormEditMenu = (e) => {
   if (e.target.hasAttribute("data-edit")) {
     const data = getMenuData();
-    const indexRecipe = data.recipeGroup.findIndex(
-      (item) => item.index === Number(e.target.id)
-    );
+    const indexRecipe = findById(data.recipeGroup, Number(e.target.id))
     if (indexRecipe === -1) return;
     const recipeItem = e.target.closest("li");
     const titleRecepie = recipeItem.querySelector(".title-recepie");
-    const btnDeleteRecepie = recipeItem.querySelector(
-      "button[data-delete='delete']"
-    );
+    const btnDeleteRecepie = recipeItem.querySelector("button[data-delete='delete']");
     const btnAddRecepie = recipeItem.querySelector("button[data-add='add']");
     titleRecepie.remove();
     recipeItem.insertAdjacentHTML(
@@ -366,9 +330,7 @@ const formReceptIngrediensMenu = (e) => {
   const { ingredients, numb } = e.target.elements;
   const data = getMenuData();
   if (!data) return;
-  const indexRecipe = data.recipeGroup.findIndex(
-    (item) => item.index === Number(e.target.id)
-  );
+  const indexRecipe = findById(data.recipeGroup, Number(e.target.id))
   if (indexRecipe === -1) return;
   data.recipeGroup[indexRecipe].recipeIngredienst.push({
     index: generateUniqueNumber(),
@@ -385,9 +347,7 @@ const saveFormEditMenu = (e) => {
   const { recipeName } = e.target.elements;
   const data = getMenuData();
   if (!data) return;
-  const indexRecipe = data.recipeGroup.findIndex(
-    (item) => item.index === Number(e.target.id)
-  );
+  const indexRecipe = findById(data.recipeGroup, Number(e.target.id))
   if (indexRecipe === -1) return;
   data.recipeGroup[indexRecipe].recipeName = recipeName.value;
   setMenuData(data);
@@ -449,7 +409,34 @@ const cancelFormEditDessert = (e) => {
   }
 };
 
-btnAddDesert.addEventListener("click", createBtnFormMenu); // створює форму для додавання десерту
+
+const successfullyDesert = (e) => {
+  const data = getMenuData();
+  if (!data) return;
+  let dataListMenu = JSON.parse(localStorage.getItem("listMenuDesert"));
+  if (!dataListMenu) {
+    dataListMenu = [];
+  }
+
+  dataListMenu.push(data);
+  localStorage.setItem("listMenuDesert", JSON.stringify(dataListMenu));
+  localStorage.removeItem("menu");
+  listMenu.innerHTML = "";
+  listIngredients.innerHTML = "";
+  btnSuccessfullyDessert.classList.add("hidden");
+  btnAddDessert.classList.remove("hidden");
+  mainTitle.classList.remove("hidden");
+  Toastify({
+    text: "Десерт успішно створено",
+    className: "info",
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+  }).showToast();
+};
+
+
+btnAddDessert.addEventListener("click", createBtnFormMenu); // створює форму для додавання десерту
 listMenu.addEventListener("click", menuRemove); // видалення десерту
 form.addEventListener("submit", createMenu); // створення десерту
 listMenu.addEventListener("click", createFormEditDessert); // створює форму для редагування десерту
@@ -470,6 +457,6 @@ listIngredients.addEventListener("click", createEditFormIngredients); // cтво
 listIngredients.addEventListener("submit", saveEditFormIngredients); // збереження відредагованого інгредієнта
 listIngredients.addEventListener("click", visibleIngredients); // показує/приховує інгредієнти
 
-btnSuccessfullyDesert.addEventListener("click", successfullyDesert); // фінальна стадія десерту
+btnSuccessfullyDessert.addEventListener("click", successfullyDesert); // фінальна стадія десерту
 
 updateMenu(); // оновлення рендеру
