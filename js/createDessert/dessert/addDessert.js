@@ -1,5 +1,9 @@
-import { setMenuData, updateMenu, generateUniqueNumber } from "../utils/storage.js";
-import { dessertForm, mainTitleEl } from "../utils/domRef.js";
+import {
+  setMenuData,
+  updateMenu,
+  generateUniqueNumber,
+} from "../../utils/storage.js";
+import { dessertForm, mainTitleEl } from "../../utils/domRef.js";
 
 export const addDessert = (e) => {
   e.preventDefault();

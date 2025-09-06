@@ -1,4 +1,4 @@
-import { getMenuData, setMenuData, updateMenu } from '../utils/storage.js';
+import { getMenuData, setMenuData, updateMenu } from "../../utils/storage.js";
 
 export const saveEditedDessert = (e) => {
   e.preventDefault();
