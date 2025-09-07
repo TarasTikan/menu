@@ -4,6 +4,9 @@ import { removeDessert } from "./listDessert/removeDessert.js";
 import { showFormNotesDessert } from "./listDessert/showFormNotesDessert.js";
 import { addNotesDessert } from "./listDessert/addNotesDessert.js";
 import { filtrDessertsMenu } from "./listDessert/filtrDessertsMenu.js";
+import {loaderCookies} from "./utils/loader.js"
+
+window.addEventListener("load", loaderCookies);
 
 formFilter.addEventListener("input", filtrDessertsMenu);
 listMenu.addEventListener("submit", addNotesDessert);

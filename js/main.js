@@ -1,3 +1,4 @@
+
 import {
   dessertForm,
   dessertContainer,
@@ -26,28 +27,32 @@ import { saveEditedIngredient } from "./createDessert/ingredient/saveEditedIngre
 
 import { finalizeDessert } from "./createDessert/dessert/finalizeDessert.js";
 import { updateMenu } from "./utils/storage.js";
+import {loaderCookies} from "./utils/loader.js"
 
-btnAddDessertEl.addEventListener("click", showDessertForm); // створює форму для додавання десерту
-dessertContainer.addEventListener("click", deleteDessert); // видалення десерту
-dessertForm.addEventListener("submit", addDessert); // створення десерту
-dessertContainer.addEventListener("click", showEditDessertForm); // створює форму для редагування десерту
-dessertContainer.addEventListener("submit", saveEditedDessert); // збереження відредагованого десерту
-dessertContainer.addEventListener("click", cancelEditDessert); // скасування відредагованого рецепту
 
-dessertContainer.addEventListener("click", showRecipeForm); // створює форму для додавання рецепта
-recipeContainer.addEventListener("click", deleteRecipe); // видалення рецепта
-dessertContainer.addEventListener("submit", addRecipe); // створення рецепта
-recipeContainer.addEventListener("click", showEditRecipeForm); // створює форму для редагування рецепта
-recipeContainer.addEventListener("submit", saveEditedRecipe); // збереження відредагованого рецепту
-recipeContainer.addEventListener("click", cancelEditRecipe); // скасування відредагованого рецепту
+window.addEventListener("load", loaderCookies);
 
-recipeContainer.addEventListener("click", showIngredientForm); // створює форму для додавання інгредієнтів
-recipeContainer.addEventListener("click", deleteIngredient); // видалення інгредієнта
-recipeContainer.addEventListener("submit", addIngredient); // Створеняя інгредієнта
-recipeContainer.addEventListener("click", toggleIngredientsVisibility); // показує/приховує інгредієнти
-recipeContainer.addEventListener("click", showEditIngredientForm); // cтворення форми редагування інгредієнта
-recipeContainer.addEventListener("submit", saveEditedIngredient); // збереження відредагованого інгредієнта
+btnAddDessertEl.addEventListener("click", showDessertForm);
+dessertContainer.addEventListener("click", deleteDessert);
+dessertForm.addEventListener("submit", addDessert);
+dessertContainer.addEventListener("click", showEditDessertForm);
+dessertContainer.addEventListener("submit", saveEditedDessert);
+dessertContainer.addEventListener("click", cancelEditDessert);
 
-btnFinalizeDessertEl.addEventListener("click", finalizeDessert); // фінальна стадія десерту
+dessertContainer.addEventListener("click", showRecipeForm);
+recipeContainer.addEventListener("click", deleteRecipe);
+dessertContainer.addEventListener("submit", addRecipe);
+recipeContainer.addEventListener("click", showEditRecipeForm);
+recipeContainer.addEventListener("submit", saveEditedRecipe); 
+recipeContainer.addEventListener("click", cancelEditRecipe);
 
-updateMenu(); // оновлення рендеру
+recipeContainer.addEventListener("click", showIngredientForm);
+recipeContainer.addEventListener("click", deleteIngredient);
+recipeContainer.addEventListener("submit", addIngredient);
+recipeContainer.addEventListener("click", toggleIngredientsVisibility);
+recipeContainer.addEventListener("click", showEditIngredientForm);
+recipeContainer.addEventListener("submit", saveEditedIngredient);
+
+btnFinalizeDessertEl.addEventListener("click", finalizeDessert);
+
+updateMenu(); 
