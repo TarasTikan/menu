@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+{{> head}}
+  </head>
+  <body>
+  <div id="preloader">
+    <img src="/img/loader.png" alt="Loading..." class="cookie" />
+  </div>
+    <header class="header">
+      {{> header}}
+    </header>
+    <main>
+       <section class="section-form-menu">
+        <div class="container">
+          {{> formCreateDessert}}
+           <ul class="list-menu"></ul>
+          <ul class="list-ingredients"></ul>
+          <button type="button" class="btn-successfully-desert hidden">
+            Готовий десерт
+          </button>
+        </div>
+       </section>
+    </main>
+    {{!-- <script type="module" src="/src/scripts/main.ts"></script> --}}
+  </body>
+</html>

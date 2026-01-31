@@ -1,0 +1,64 @@
+@import './base/common.scss';
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #ffe0e4;
+  background-image: url("./img/background.png");
+  background-size: 70%;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.header {
+  padding-top: 20px;
+  padding-bottom: 50px;
+  padding: 27px 25px;
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 0px 21px;
+  margin: 0 auto;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 400px) {
+  .nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+.nav-link {
+  text-transform: uppercase;
+  color: #6e1a2b;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 21px;
+  text-decoration: none;
+  padding: 25px 10px;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover {
+  background-color: white;
+  border-radius: 16px;
+}
+
+@media screen and (min-width: 400px) {
+  .nav-link {
+    padding: 27px 25px;
+    font-size: 13px;
+  }
+}
