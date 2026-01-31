@@ -411,7 +411,7 @@ svg {
   padding-left: 15px;
   color: #6e1a2b;
 }
-.list-ingredients {
+.list-ingredients-recepie {
   display: flex;
   flex-direction: column;
   gap: 15px;

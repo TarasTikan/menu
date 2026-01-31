@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ {{> head}}
+</head>
+<body>
+       <div id="preloader">
+    <img src="./img/loader.png" alt="Loading..." class="cookie" />
+  </div>
+    {{> header}}
+    <main>
+  <section class="menu-desserts">
+        <div class="container">
+        {{> filterForm}}
+         <ul class="list-menu-recepie"></ul>
+        {{!-- {{> listMenuDesserts}} --}}
+            </div>
+        </section>
+    </main>
+        <script type="module" src="/src/scripts/main.ts"></script>
+</body>
+</html>

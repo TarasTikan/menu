@@ -1,0 +1,39 @@
+.menu-title-dessert {
+  font-size: 40px;
+  font-weight: 700;
+  color: #6e1a2b;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.label-filtr-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 25px;
+  color: #6e1a2b;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.filtr-menu {
+  margin-top: 10px;
+  width: 90%;
+  height: 30px;
+  background-color: #ffebed;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 16px;
+  padding-left: 15px;
+  color: #6e1a2b;
+}
+
+.list-menu-recepie {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
