@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding-top: 10px;
+  align-items: center;
 }
 
 .btn-successfully-dessert {
@@ -32,4 +32,109 @@
   border-color: transparent;
   color: white;
   cursor: pointer;
+}
+
+.visible-btn {
+  color: #6e1a2b;
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 10px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-transform: uppercase;
+  border: 2px solid rgb(255, 255, 255);
+  height: 30px;
+  border-radius: 16px;
+  background-color: #ffebed;
+  margin: 0 auto;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    cursor 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.visible-btn:hover {
+  background-color: #f48fa3;
+  border-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+
+.wrap-title-ingredients {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-ingredients {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #6e1a2b;
+}
+
+.wrap-recepie {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ingredients-text {
+  margin-right: auto;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #6e1a2b;
+}
+
+.list-ingredients-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+}
+
+.form-edit-ingredients {
+  display: flex;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  .form-edit-ingredients {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; 
+  }
+  }
+
+.input-edit-ingredients {
+  width: 90%;
+  height: 30px;
+  background-color: #ffebed;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 16px;
+  padding-left: 15px;
+  color: #6e1a2b;
+}
+
+.label-edit-ingredients {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #6e1a2b;
+  display: flex;
+  gap: 5px;
+  align-items: start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-recepie-ingredients {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
 }

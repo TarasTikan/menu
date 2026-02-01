@@ -4,12 +4,13 @@ import {
   updateMenu,
   generateUniqueNumber,
 } from "../../utils/storage.js";
-import { dessertForm } from "../../utils/domRef.js";
+import { dessertForm } from "../../utils/domRefMain.ts";
 
-export const addRecipe = (e) => {
+export const addRecipe = (e: Event) => {
   e.preventDefault();
-  if (!e.target.elements.nameRecipe) return;
-  const { nameRecipe } = e.target.elements;
+  const target = e.target as HTMLFormElement;
+  if (!target) return;
+  const nameRecipe  = (target.elements.namedItem("nameRecipe") as HTMLInputElement);
 
   const data = getMenuData();
   if (!data) return;

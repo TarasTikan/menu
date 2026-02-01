@@ -1,6 +1,7 @@
 import './addDessert.ts'
 import './cancelEditDessert.ts'
 import './deleteDessert.ts'
+import './finalizeDessert.ts'
 import './saveEditedDessert.ts'
 import './showDessertForm.ts'
 import './showEditDessertForm.ts'

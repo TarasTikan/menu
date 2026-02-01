@@ -18,5 +18,8 @@
     "vite": "^7.2.4",
     "vite-plugin-image-optimizer": "^2.0.3",
     "vituum": "^1.2.0"
+  },
+  "dependencies": {
+    "typescript-toastify": "^1.0.4"
   }
 }

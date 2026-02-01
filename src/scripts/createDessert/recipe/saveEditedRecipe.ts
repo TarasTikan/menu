@@ -5,13 +5,14 @@ import {
   findById,
 } from "../../utils/storage.js";
 
-export const saveEditedRecipe = (e) => {
+export const saveEditedRecipe = (e: Event) => {
   e.preventDefault();
-  if (e.target.name !== "edit-menu") return;
-  const { recipeName } = e.target.elements;
+  const target = e.target as HTMLFormElement;
+  if (target.name !== "edit-menu") return;
+  const recipeName = (target.elements.namedItem("recipeName") as HTMLInputElement);
   const data = getMenuData();
   if (!data) return;
-  const indexRecipe = findById(data.recipeGroup, Number(e.target.id));
+  const indexRecipe: number = findById(data.recipeGroup, Number(target.id));
   if (indexRecipe === -1) return;
   data.recipeGroup[indexRecipe].recipeName = recipeName.value;
   setMenuData(data);
