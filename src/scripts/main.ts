@@ -26,8 +26,14 @@
 // import { saveEditedIngredient } from "./createDessert/ingredient/saveEditedIngredient.js";
 
 import { addDessert } from "./createDessert/dessert/addDessert";
-import { dessertForm } from "./utils/domRefMain";
+import { dessertContainer, dessertForm } from "./utils/domRefMain";
+import { showDessertForm } from "./createDessert/dessert/showDessertForm";
+import { btnAddDessertEl } from "./utils/domRefMain";
 import { loaderCookies } from "./utils/loader";
+import { deleteDessert } from "./createDessert/dessert/deleteDessert";
+import { showEditDessertForm } from "./createDessert/dessert/showEditDessertForm";
+import { cancelEditDessert } from "./createDessert/dessert/cancelEditDessert";
+import { saveEditedDessert } from "./createDessert/dessert/saveEditedDessert";
 
 // import { finalizeDessert } from "./createDessert/dessert/finalizeDessert.js";
 // import { updateMenu } from "./utils/storage.js";
@@ -36,12 +42,12 @@ import { loaderCookies } from "./utils/loader";
 
 window.addEventListener("load", loaderCookies);
 
-// btnAddDessertEl.addEventListener("click", showDessertForm);
-// dessertContainer.addEventListener("click", deleteDessert);
+btnAddDessertEl.addEventListener("click", showDessertForm);
+dessertContainer.addEventListener("click", deleteDessert);
 dessertForm.addEventListener("submit", addDessert);
-// dessertContainer.addEventListener("click", showEditDessertForm);
-// dessertContainer.addEventListener("submit", saveEditedDessert);
-// dessertContainer.addEventListener("click", cancelEditDessert);
+dessertContainer.addEventListener("click", showEditDessertForm);
+dessertContainer.addEventListener("submit", saveEditedDessert);
+dessertContainer.addEventListener("click", cancelEditDessert);
 
 // dessertContainer.addEventListener("click", showRecipeForm);
 // recipeContainer.addEventListener("click", deleteRecipe);

@@ -135,7 +135,7 @@ const renderFormRecepie = (data) => {
   <use href="./img/icons.svg#icon-delete"></use>
 </svg></button>
             </div>
-            <form class="form-title-recepie hidden" id=${data.index}>
+            <form class="form-recepie hidden" id=${data.index}>
             <label class="label-title-recepie">
               Назва рецепту
               <input type="text" name="nameRecipe" class="input-title-recepie" required/>

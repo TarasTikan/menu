@@ -3,7 +3,6 @@
   font-weight: 700;
   color: #6e1a2b;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .add-btn-dessert {
@@ -26,7 +25,7 @@
     cursor 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.form-container {
+.form-container-dessert {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,4 +69,57 @@
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     cursor 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-edit-dessert {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-title-recepie {
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+  background-color: #ffebed;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 16px;
+  padding-left: 15px;
+  color: #6e1a2b;
+}
+
+.input-title-recepie:focus {
+  border: 2px solid #6e1a2b;
+}
+
+@media screen and (min-width: 600px) {
+  .input-title-recepie {
+    height: 40px;
+  }
+}
+
+.btn-dessert {
+  color: #6e1a2b;
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-transform: uppercase;
+  border: 2px solid rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 16px;
+  background-color: #ffebed;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    cursor 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-dessert:hover {
+  background-color: #f48fa3;
+  border-color: transparent;
+  fill: white;
+  color: white;
+  cursor: pointer;
 }

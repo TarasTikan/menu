@@ -219,7 +219,7 @@ body {
 }
 
 svg {
-  pointer-events: none; /* Щоб кліки йшли на кнопку, а не на саму іконку */
+  pointer-events: none; 
 }
 
 .btn-create-recepie:hover {

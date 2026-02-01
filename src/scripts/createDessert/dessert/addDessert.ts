@@ -8,19 +8,20 @@ import type { Dessert } from "../../types/types.ts";
 
 export const addDessert = (e: SubmitEvent) => {
   e.preventDefault();
+
   const target = e.currentTarget as HTMLFormElement;
-  if (!target?.desert.value) return;
-  const desert = target.elements.namedItem("desert") as HTMLInputElement | null;
+  if (!target) return;
+  const desert = (target.elements.namedItem("dessertName") as HTMLInputElement).value;
   if (!desert) return;
 
   const menu: Dessert = {
-    desertName: desert.value,
+    desertName: desert,
     index: generateUniqueNumber(),
     recipeGroup: [],
   };
   setMenuData(menu);
   updateMenu();
-  desert.value = "";
+  (target.elements.namedItem("dessertName") as HTMLInputElement).value = "";
   dessertForm.classList.add("hidden");
   mainTitleEl.classList.add("hidden");
 };
