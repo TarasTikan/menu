@@ -1,4 +1,4 @@
-import { updateMenu } from "../../utils/storage.js";
+import { updateMenu } from "../../features/dessert";
 
 export const cancelEditRecipe = (e: Event) => {
   const target = e.target as HTMLButtonElement;

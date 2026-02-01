@@ -1,4 +1,5 @@
-import { getMenuData, setMenuData, updateMenu } from "../../utils/storage.ts";
+import { updateMenu } from "../../features/dessert.ts";
+import { getMenuData, setMenuData } from "../../utils/storage.ts";
 
 export const saveEditedDessert = (e: Event) => {
   e.preventDefault();

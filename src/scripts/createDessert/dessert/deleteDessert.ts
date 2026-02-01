@@ -4,7 +4,7 @@ import {
   recipeContainer,
   btnAddDessertEl,
   btnFinalizeDessertEl,
-} from "../../utils/domRefMain.js";
+} from "../../dom/domRefMain.js";
 
 export const deleteDessert = (e: Event) => {
   if (e.target && (e.target as HTMLElement).hasAttribute("data-delete")) {

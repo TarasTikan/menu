@@ -1,4 +1,4 @@
-import { dessertForm, btnAddDessertEl } from "../../utils/domRefMain.ts";
+import { dessertForm, btnAddDessertEl } from "../../dom/domRefMain.ts";
 
 export const showDessertForm = () => {
   dessertForm.classList.remove("hidden");

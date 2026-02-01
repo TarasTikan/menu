@@ -1,5 +1,6 @@
-import { getMenuData, setMenuData, updateMenu } from "../../utils/storage.js";
-import { btnFinalizeDessertEl } from "../../utils/domRefMain.ts";
+import { getMenuData, setMenuData} from "../../utils/storage.js";
+import { btnFinalizeDessertEl } from "../../dom/domRefMain.ts";
+import { updateMenu } from "../../features/dessert.ts";
 
 export const deleteRecipe = (e: Event) => {
   const target = e.target as HTMLButtonElement

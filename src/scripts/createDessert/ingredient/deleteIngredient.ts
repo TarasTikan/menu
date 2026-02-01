@@ -1,8 +1,8 @@
-import { btnFinalizeDessertEl } from "../../utils/domRefMain.ts";
+import { btnFinalizeDessertEl } from "../../dom/domRefMain.ts";
+import { updateMenu } from "../../features/dessert.ts";
 import {
   getMenuData,
   setMenuData,
-  updateMenu,
   findById,
 } from "../../utils/storage.js";
 

@@ -4,7 +4,7 @@ import {
   btnFinalizeDessertEl,
   btnAddDessertEl,
   mainTitleEl,
-} from "../../utils/domRefMain.ts";
+} from "../../dom/domRefMain.ts";
 import { getDesserts, getMenuData, setDesserts } from "../../utils/storage.ts";
 import Toast from "typescript-toastify";
 

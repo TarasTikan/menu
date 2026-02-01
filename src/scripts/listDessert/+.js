@@ -1,4 +1,4 @@
-import './addNotesDessert.js'
-import './filtrDessertsMenu.js'
-import './removeDessert.js'
-import './showFormNotesDessert.js'
+import './addNotesDessert.ts'
+import './filtrDessertsMenu.ts'
+import './removeDessert.ts'
+import './showFormNotesDessert.ts'

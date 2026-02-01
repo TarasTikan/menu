@@ -1,8 +1,10 @@
-import { helpersDomRef } from "./domRefMain";
-
 export const loaderCookies = () => {
-  const preloader = helpersDomRef<HTMLDivElement>("#preloader");
-  const main = helpersDomRef<HTMLElement>("main");
-  preloader.style.display = "none";
-  main.style.display = "block";
+  const preloader = document.querySelector<HTMLDivElement>("#preloader");
+  const main = document.querySelector<HTMLElement>("main");
+  if (preloader) {
+    preloader.style.display = "none";
+  }
+  if (main) {
+    main.style.display = "block";
+  }
 };

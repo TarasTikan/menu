@@ -1,7 +1,7 @@
+import { updateMenu } from "../../features/dessert.js";
 import {
   getMenuData,
   setMenuData,
-  updateMenu,
   findById,
   generateUniqueNumber,
 } from "../../utils/storage.js";

@@ -1,8 +1,8 @@
+import { updateMenu } from "../../features/dessert.js";
 import {
   getMenuData,
   setMenuData,
   findById,
-  updateMenu,
 } from "../../utils/storage.js";
 
 export const saveEditedIngredient = (e: Event) => {

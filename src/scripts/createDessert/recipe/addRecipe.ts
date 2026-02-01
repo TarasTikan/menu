@@ -1,10 +1,10 @@
 import {
   getMenuData,
   setMenuData,
-  updateMenu,
   generateUniqueNumber,
 } from "../../utils/storage.js";
-import { dessertForm } from "../../utils/domRefMain.ts";
+import { dessertForm } from "../../dom/domRefMain.ts";
+import { updateMenu } from "../../features/dessert.ts";
 
 export const addRecipe = (e: Event) => {
   e.preventDefault();

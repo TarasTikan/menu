@@ -1,4 +1,4 @@
-import { dessertForm } from "../../utils/domRefMain.ts";
+import { dessertForm } from "../../dom/domRefMain.ts";
 
 export const showRecipeForm = (e: Event) => {
   if ((e.target as HTMLElement).hasAttribute("data-add")) {
