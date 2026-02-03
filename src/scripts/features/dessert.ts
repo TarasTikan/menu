@@ -107,7 +107,7 @@ export const updateMenu = (): void => {
     return btnAddDessertEl.classList.remove("hidden");
   }
   mainTitleEl.classList.add("hidden");
-
+  btnAddDessertEl.classList.add("hidden");
   renderFormRecepie(data);
   renderListIngredients(data);
   if (!data.recipeGroup[0]) return;

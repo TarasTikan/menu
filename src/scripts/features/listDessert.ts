@@ -6,10 +6,12 @@ export const updateListMenu = (filtrData?: Dessert[]) => {
   const data = filtrData ?? getDesserts();
   if (!data || data.length === 0) {
     menuTitle.textContent = "Немає десертів у меню \u{1F370}";
-    formFilter?.remove();
-    return;
+    formFilter?.remove()
+    renderListDessert([]);
+    return 
+  } else {
+    menuTitle.textContent = "Меню";
   }
-  menuTitle.textContent = "Меню";
   renderListDessert(data);
 };
 

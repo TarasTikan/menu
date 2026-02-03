@@ -6,11 +6,11 @@ export const removeDessert = (e: Event) => {
   if (target.hasAttribute("data-delete")) {
     if (!confirm("Ти впевнений(а), що хочеш видалити цей десерт?")) return;
     const data = getDesserts();
-    if (!data) return;
+    if (!data || data.length === 0) return;
     const filteredData = data.filter(
       (item) => item.index !== Number(target.id),
     );
     setDesserts(filteredData);
-    updateListMenu(filteredData);
+    updateListMenu();
   }
 };
