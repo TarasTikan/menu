@@ -13,3 +13,4 @@ formFilter.addEventListener("input", filtrDessertsMenu);
     listMenu.addEventListener("click", showFormNotesDessert);
     listMenu.addEventListener("click", removeDessert);
     updateListMenu();
+

@@ -26,7 +26,7 @@ export const showEditRecipeForm = (e: Event) => {
  Назва рецепту
  <input type="text" name="recipeName" class="input-title-recepie" value="${data.recipeGroup[indexRecipe].recipeName}" required/>
  </label>
-  <div class="wrap-btn">
+  <div class="wrap-btns-edit-recepie">
     <button type="submit" class="btn-dessert">Зберегти</button>
     <button type="button" class="btn-dessert" data-cancel="cancel">Скасувати</button>
   </div>

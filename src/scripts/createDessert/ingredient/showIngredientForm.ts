@@ -1,3 +1,5 @@
+import autoAnimate from "@formkit/auto-animate";
+
 export const showIngredientForm = (e: Event) => {
   const target = e.target as HTMLButtonElement;
   if (target.hasAttribute("data-add")) {
@@ -6,11 +8,14 @@ export const showIngredientForm = (e: Event) => {
     const formRecepieIngredients = liElement.querySelector<HTMLFormElement>(
       ".form-recepie-ingredients"
     );
+
     if (formRecepieIngredients) {
+      autoAnimate(liElement);
       formRecepieIngredients.classList.toggle("hidden");
       target.textContent = formRecepieIngredients.classList.contains("hidden")
         ? "Додати до інгредієнт"
         : "Приховати форму інгредієнту";
     }
+    
   }
 };

@@ -5,7 +5,7 @@ function helpersDomRef<T extends HTMLElement>(selector: string): T {
   }
   return element;
 }
-
+export const mainContainerEl = helpersDomRef<HTMLDivElement>(".section-form-menu .container");
 export const mainTitleEl = helpersDomRef<HTMLHeadingElement>(".title-dessert");
 export const dessertForm = helpersDomRef<HTMLFormElement>(".form-container-dessert");
 export const dessertContainer = helpersDomRef<HTMLDivElement>(".list-recepie-dessert");

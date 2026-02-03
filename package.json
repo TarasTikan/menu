@@ -20,6 +20,7 @@
     "vituum": "^1.2.0"
   },
   "dependencies": {
+    "@formkit/auto-animate": "^0.9.0",
     "typescript-toastify": "^1.0.4"
   }
 }
