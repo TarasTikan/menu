@@ -1,5 +1,3 @@
-import autoAnimate from "@formkit/auto-animate";
-
 export const toggleIngredientsVisibility = (e: Event) => {
   const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".visible-btn");
   if (!btn) return;
@@ -19,5 +17,5 @@ export const toggleIngredientsVisibility = (e: Event) => {
     btn.remove();
     header.insertAdjacentHTML("beforeend", `<button type="button" class="visible-btn">Показати</button>`);
   }
-  document.querySelectorAll<HTMLDivElement>(".wrap-title-ingredients").forEach((el) => autoAnimate(el));
+
 };

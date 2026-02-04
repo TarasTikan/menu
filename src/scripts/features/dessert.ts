@@ -1,3 +1,4 @@
+import autoAnimate from "@formkit/auto-animate";
 import { btnAddDessertEl, btnFinalizeDessertEl, dessertContainer, mainTitleEl, recipeContainer } from "../dom/domRefMain";
 import type { Dessert } from "../types/types";
 import { getMenuData } from "../utils/storage";
@@ -46,7 +47,7 @@ export const renderListIngredients = (data: Dessert) => {
       
       <div class="wrap-btn">
             <button type="button" class="btn-dessert" data-add="add" id=${item.index
-          }>Додати інгредієнт</button>
+          }>Додати до рецепту інгредієнт</button>
              <button type="button" class="btn-dessert" data-edit="edit" id=${item.index
           }><svg class="icon-pencil" width="15" height="15">
   <use href="./img/icons.svg#icon-pencil"></use>
@@ -89,7 +90,8 @@ export const renderListIngredients = (data: Dessert) => {
       )
       .join(""),
   );
-
+  document.querySelectorAll<HTMLDivElement>(".wrap-btn").forEach((el) => autoAnimate(el));
+ document.querySelectorAll<HTMLDivElement>(".wrap-title-ingredients").forEach((el) => autoAnimate(el));
 };
 
 
