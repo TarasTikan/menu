@@ -1,17 +1,23 @@
-export const toggleIngredientsVisibility = (e: Event) => {
-  const target = e.target as HTMLButtonElement;
-  if (target.classList.contains("visible-btn")) {
-    const recipeItem = target.closest<HTMLLIElement>("li");
-    if (!recipeItem) return;
-    const itemIngredients = recipeItem.querySelector<HTMLUListElement>(
-      ".list-ingredients-recepie"
-    );
+import autoAnimate from "@formkit/auto-animate";
 
-    if (itemIngredients) {
-      itemIngredients.classList.toggle("hidden");
-      target.textContent = itemIngredients.classList.contains("hidden")
-        ? "Показати"
-        : "Приховати";
-    }
+export const toggleIngredientsVisibility = (e: Event) => {
+  const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".visible-btn");
+  if (!btn) return;
+
+  const recipeItem = btn.closest<HTMLLIElement>("li");
+  if (!recipeItem) return;
+
+  const list = recipeItem.querySelector<HTMLUListElement>(".list-ingredients-recepie");
+  const header = recipeItem.querySelector<HTMLDivElement>(".wrap-title-ingredients");
+  if (!list || !header) return;
+  if (list.classList.contains("hidden")) {
+    list.classList.remove("hidden");
+    btn.remove();
+    header.insertAdjacentHTML("beforeend", `<button type="button" class="visible-btn">Сховати</button>`);
+  } else {
+    list.classList.add("hidden");
+    btn.remove();
+    header.insertAdjacentHTML("beforeend", `<button type="button" class="visible-btn">Показати</button>`);
   }
+  document.querySelectorAll<HTMLDivElement>(".wrap-title-ingredients").forEach((el) => autoAnimate(el));
 };

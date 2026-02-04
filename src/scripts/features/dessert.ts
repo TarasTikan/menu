@@ -9,16 +9,13 @@ export const renderFormRecepie = (data: Dessert) => {
     `
             <h2 class="title-dessert">${data.desertName}</h2>
             <div class="wrap-btn">
-            <button type="button" class="btn-create-recepie" data-add="add" id=${
-              data.index
-            }>Додати до десерту рецепт</button>
-            <button type="button" class="btn-create-recepie" data-edit="edit" id=${
-              data.index
-            }><svg class="icon-pencil" width="15" height="15">
+            <button type="button" class="btn-create-recepie" data-add="add" id=${data.index
+    }>Додати до десерту рецепт</button>
+            <button type="button" class="btn-create-recepie" data-edit="edit" id=${data.index
+    }><svg class="icon-pencil" width="15" height="15">
   <use href="./img/icons.svg#icon-pencil"></use>
 </svg></button>
-<button type="button" class="btn-create-recepie" data-delete="delete" id=${
-      data.index
+<button type="button" class="btn-create-recepie" data-delete="delete" id=${data.index
     }><svg class="icon-delete" width="15" height="15">
   <use href="./img/icons.svg#icon-delete"></use>
 </svg></button>
@@ -28,15 +25,13 @@ export const renderFormRecepie = (data: Dessert) => {
               Назва рецепту
               <input type="text" name="nameRecipe" class="input-title-recepie" required/>
             </label>
-            <button type="submit" class="btn-dessert" id=${
-              data.index
-            }>Додати рецепт</button>
+            <button type="submit" class="btn-dessert" id=${data.index
+    }>Додати рецепт</button>
           </form>
-          <p class="sub-title-recepie ${
-            data.recipeGroup.length || "hidden"
-          }">Технології приготування ${data.desertName}</p>
+          <p class="sub-title-recepie ${data.recipeGroup.length || "hidden"
+    }">Технології приготування ${data.desertName}</p>
           `,
-  );
+  )
 };
 
 export const renderListIngredients = (data: Dessert) => {
@@ -50,24 +45,20 @@ export const renderListIngredients = (data: Dessert) => {
        <h1 class="title-recepie">${item.recipeName}</h1>
       
       <div class="wrap-btn">
-            <button type="button" class="btn-dessert" data-add="add" id=${
-              item.index
-            }>Додати інгредієнт</button>
-             <button type="button" class="btn-dessert" data-edit="edit" id=${
-               item.index
-             }><svg class="icon-pencil" width="15" height="15">
+            <button type="button" class="btn-dessert" data-add="add" id=${item.index
+          }>Додати інгредієнт</button>
+             <button type="button" class="btn-dessert" data-edit="edit" id=${item.index
+          }><svg class="icon-pencil" width="15" height="15">
   <use href="./img/icons.svg#icon-pencil"></use>
 </svg></button>
 
-<button type="button" class="btn-dessert" data-delete="delete" id=${
-          item.index
-        }><svg class="icon-delete" width="15" height="15">
+<button type="button" class="btn-dessert" data-delete="delete" id=${item.index
+          }><svg class="icon-delete" width="15" height="15">
   <use href="./img/icons.svg#icon-delete"></use>
 </svg></button>
       </div>
-      <div class="wrap-title-ingredients ${
-        item.recipeIngredienst.length > 0 ? "" : "hidden"
-      }"><h2 class="title-ingredients">Інгредієнти:</h2><button type="button" class="visible-btn">Показати</button> </div>
+      <div class="wrap-title-ingredients ${item.recipeIngredienst.length > 0 ? "" : "hidden"
+          }"><h2 class="title-ingredients">Інгредієнти:</h2><button type="button" class="visible-btn">Показати</button> </div>
       
                <form class="form-recepie-ingredients hidden" id=${item.index}>
                 <label class="label-title-recepie">
@@ -98,6 +89,7 @@ export const renderListIngredients = (data: Dessert) => {
       )
       .join(""),
   );
+
 };
 
 
