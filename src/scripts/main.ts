@@ -1,5 +1,10 @@
 import { addDessert } from "./createDessert/dessert/addDessert";
-import { btnFinalizeDessertEl, dessertContainer, dessertForm, recipeContainer } from "./dom/domRefMain";
+import {
+  btnFinalizeDessertEl,
+  dessertContainer,
+  mainContainerEl,
+  recipeContainer,
+} from "./dom/domRefMain";
 import { showDessertForm } from "./createDessert/dessert/showDessertForm";
 import { btnAddDessertEl } from "./dom/domRefMain";
 import { loaderCookies } from "./utils/loader";
@@ -26,7 +31,7 @@ window.addEventListener("load", loaderCookies);
 
 btnAddDessertEl.addEventListener("click", showDessertForm);
 dessertContainer.addEventListener("click", deleteDessert);
-dessertForm.addEventListener("submit", addDessert);
+document.addEventListener("submit", addDessert);
 dessertContainer.addEventListener("click", showEditDessertForm);
 dessertContainer.addEventListener("submit", saveEditedDessert);
 dessertContainer.addEventListener("click", cancelEditDessert);
@@ -35,7 +40,7 @@ dessertContainer.addEventListener("click", showRecipeForm);
 recipeContainer.addEventListener("click", deleteRecipe);
 dessertContainer.addEventListener("submit", addRecipe);
 recipeContainer.addEventListener("click", showEditRecipeForm);
-recipeContainer.addEventListener("submit", saveEditedRecipe); 
+recipeContainer.addEventListener("submit", saveEditedRecipe);
 recipeContainer.addEventListener("click", cancelEditRecipe);
 
 recipeContainer.addEventListener("click", showIngredientForm);
@@ -47,6 +52,7 @@ recipeContainer.addEventListener("submit", saveEditedIngredient);
 
 btnFinalizeDessertEl.addEventListener("click", finalizeDessert);
 
-updateMenu(); 
+updateMenu();
+autoAnimate(mainContainerEl);
 autoAnimate(dessertContainer);
 autoAnimate(recipeContainer);

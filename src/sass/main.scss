@@ -1,12 +1,9 @@
+@use "./layouts/mainLayouts/header.scss";
+@use "./layouts/mainLayouts/formCreateDessert.scss";
+@use "./layouts/mainLayouts/listIngredientsRecepie.scss";
+@use "./layouts/mainLayouts/listRecepieDessert.scss";
 
+@use "./layouts/listDessertsLayouts/filterForm.scss";
+@use "./layouts/listDessertsLayouts/listCardDesserts.scss";
 
-@use './layouts/mainLayouts/header.scss';
-@use './layouts/mainLayouts/formCreateDessert.scss';
-@use './layouts/mainLayouts/listIngredientsRecepie.scss';
-@use './layouts/mainLayouts/listRecepieDessert.scss';
-
-
-@use './layouts/listDessertsLayouts/filterForm.scss';
-@use './layouts/listDessertsLayouts/listCardDesserts.scss';
-
-@use './base/common.scss';
+@use "./base/common.scss";

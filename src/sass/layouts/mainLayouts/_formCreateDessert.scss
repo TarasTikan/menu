@@ -20,7 +20,8 @@
   background-color: #ffebed;
   margin-top: 15px;
   cursor: pointer;
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     cursor 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -67,7 +68,8 @@
   cursor: pointer;
   border-radius: 16px;
   background-color: #ffebed;
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     cursor 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -112,10 +114,12 @@
   padding: 10px;
   border-radius: 16px;
   background-color: #ffebed;
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     cursor 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
 }
 
 .btn-dessert:hover {

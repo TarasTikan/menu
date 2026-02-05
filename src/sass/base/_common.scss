@@ -29,7 +29,7 @@ fieldset {
 }
 
 .hidden {
- display: none;
+  display: none;
 }
 
 body {
@@ -111,14 +111,16 @@ body {
   border-radius: 16px;
   background-color: #ffebed;
   margin: 0 auto;
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     cursor 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
 }
 
 svg {
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .btn-create-recepie:hover {

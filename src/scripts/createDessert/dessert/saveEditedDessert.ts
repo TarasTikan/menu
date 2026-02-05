@@ -3,9 +3,9 @@ import { getMenuData, setMenuData } from "../../utils/storage.ts";
 
 export const saveEditedDessert = (e: Event) => {
   e.preventDefault();
-  const form  = e.target as HTMLFormElement;
+  const form = e.target as HTMLFormElement;
   if (!form) return;
-  const desertName =  form.elements.namedItem("desertName") as HTMLInputElement;
+  const desertName = form.elements.namedItem("desertName") as HTMLInputElement;
   if (!desertName) return;
   const data = getMenuData();
   if (!data) return;

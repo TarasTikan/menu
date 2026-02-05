@@ -13,7 +13,7 @@ export const finalizeDessert = (): void => {
   if (!data) return;
   const dataListMenu = getDesserts() ?? [];
   dataListMenu.push(data);
-  setDesserts(dataListMenu)
+  setDesserts(dataListMenu);
   localStorage.removeItem("menu");
   dessertContainer.innerHTML = "";
   recipeContainer.innerHTML = "";
@@ -22,23 +22,14 @@ export const finalizeDessert = (): void => {
   mainTitleEl.classList.remove("hidden");
 
   new Toast({
-  position: "top-right",
-  toastMsg: "Десерт успішно створено",
-  autoCloseTime: 2000,
-  canClose: true,
-  showProgress: true,
-  pauseOnHover: true,
-  pauseOnFocusLoss: true,
-  type: "success",
-  theme: "light",
-})
-
+    position: "top-right",
+    toastMsg: "Десерт успішно створено",
+    autoCloseTime: 2000,
+    canClose: true,
+    showProgress: true,
+    pauseOnHover: true,
+    pauseOnFocusLoss: true,
+    type: "success",
+    theme: "light",
+  });
 };
-
-  // Toastify({
-  //   text: "Десерт успішно створено",
-  //   className: "info",
-  //   style: {
-  //     background: "linear-gradient(to right, #00b09b, #96c93d)",
-  //   },
-  // }).showToast();

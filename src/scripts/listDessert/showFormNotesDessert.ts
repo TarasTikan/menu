@@ -16,7 +16,7 @@ export const showFormNotesDessert = (e: Event) => {
   <textarea name="notes" class="textarea-notes" placeholder="Введіть нотатки..." >${
     dessert.notes || ""
   }</textarea>
-  <button type="submit" class="btn-dessert-card">Зберегти</button></form>`
+  <button type="submit" class="btn-dessert-card">Зберегти</button></form>`,
     );
   }
 };

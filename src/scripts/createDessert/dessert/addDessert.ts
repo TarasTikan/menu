@@ -1,17 +1,16 @@
-import {
-  setMenuData,
-  generateUniqueNumber,
-} from "../../utils/storage.js"; 
-import { dessertForm, mainTitleEl } from "../../dom/domRefMain.ts";
+import { setMenuData, generateUniqueNumber } from "../../utils/storage.js";
+import { mainTitleEl } from "../../dom/domRefMain.ts";
 import type { Dessert } from "../../types/types.ts";
 import { updateMenu } from "../../features/dessert.ts";
 
-export const addDessert = (e: SubmitEvent) => {
+export const addDessert = (e: Event) => {
   e.preventDefault();
-
-  const target = e.currentTarget as HTMLFormElement;
-  if (!target) return;
-  const desert = (target.elements.namedItem("dessertName") as HTMLInputElement).value;
+  const form = (e.target as HTMLElement).closest<HTMLFormElement>(
+    ".form-container-dessert",
+  );
+  if (!form) return;
+  const desert = (form.elements.namedItem("dessertName") as HTMLInputElement)
+    .value;
   if (!desert) return;
 
   const menu: Dessert = {
@@ -21,7 +20,7 @@ export const addDessert = (e: SubmitEvent) => {
   };
   setMenuData(menu);
   updateMenu();
-  (target.elements.namedItem("dessertName") as HTMLInputElement).value = "";
-  dessertForm.classList.add("hidden");
+  (form.elements.namedItem("dessertName") as HTMLInputElement).value = "";
+  form.remove();
   mainTitleEl.classList.add("hidden");
 };

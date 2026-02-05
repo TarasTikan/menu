@@ -1,9 +1,5 @@
 import { updateMenu } from "../../features/dessert.js";
-import {
-  getMenuData,
-  setMenuData,
-  findById,
-} from "../../utils/storage.js";
+import { getMenuData, setMenuData, findById } from "../../utils/storage.js";
 
 export const saveEditedIngredient = (e: Event) => {
   e.preventDefault();

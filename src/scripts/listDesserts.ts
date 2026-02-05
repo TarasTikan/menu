@@ -8,9 +8,8 @@ import { loaderCookies } from "./utils/loader.ts";
 
 window.addEventListener("load", loaderCookies);
 
-formFilter.addEventListener("input", filtrDessertsMenu);    
-    listMenu.addEventListener("submit", addNotesDessert);
-    listMenu.addEventListener("click", showFormNotesDessert);
-    listMenu.addEventListener("click", removeDessert);
-    updateListMenu();
-
+formFilter.addEventListener("input", filtrDessertsMenu);
+listMenu.addEventListener("submit", addNotesDessert);
+listMenu.addEventListener("click", showFormNotesDessert);
+listMenu.addEventListener("click", removeDessert);
+updateListMenu();

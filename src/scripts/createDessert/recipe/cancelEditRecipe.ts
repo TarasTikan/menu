@@ -5,7 +5,8 @@ export const cancelEditRecipe = (e: Event) => {
   if (target.hasAttribute("data-cancel")) {
     const recipeItem = target.closest<HTMLLIElement>("li");
     if (!recipeItem) return;
-    const formEditMenu = recipeItem.querySelector<HTMLFormElement>(".form-edit-menu");
+    const formEditMenu =
+      recipeItem.querySelector<HTMLFormElement>(".form-edit-menu");
     if (formEditMenu) {
       formEditMenu.remove();
     }

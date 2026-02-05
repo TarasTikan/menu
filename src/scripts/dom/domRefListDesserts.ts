@@ -6,5 +6,7 @@ function helpersDomRef<T extends HTMLElement>(selector: string): T {
   return element;
 }
 export const listMenu = helpersDomRef<HTMLUListElement>(".list-menu-recepie");
-export const menuTitle = helpersDomRef<HTMLHeadingElement>(".menu-title-dessert");
+export const menuTitle = helpersDomRef<HTMLHeadingElement>(
+  ".menu-title-dessert",
+);
 export const formFilter = helpersDomRef<HTMLFormElement>(".form-filtr");

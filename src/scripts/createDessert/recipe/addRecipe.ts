@@ -3,14 +3,17 @@ import {
   setMenuData,
   generateUniqueNumber,
 } from "../../utils/storage.js";
-import { dessertForm } from "../../dom/domRefMain.ts";
 import { updateMenu } from "../../features/dessert.ts";
 
 export const addRecipe = (e: Event) => {
   e.preventDefault();
-  const target = e.target as HTMLFormElement;
-  if (!target) return;
-  const nameRecipe  = (target.elements.namedItem("nameRecipe") as HTMLInputElement);
+  const recepieForm = (e.target as HTMLElement).closest<HTMLFormElement>(
+    ".form-recepie",
+  );
+  if (!recepieForm) return;
+  const nameRecipe = recepieForm.elements.namedItem(
+    "nameRecipe",
+  ) as HTMLInputElement;
 
   const data = getMenuData();
   if (!data) return;
@@ -24,5 +27,5 @@ export const addRecipe = (e: Event) => {
   setMenuData(data);
   updateMenu();
   nameRecipe.value = "";
-  dessertForm.classList.add("hidden");
+  recepieForm.classList.add("hidden");
 };

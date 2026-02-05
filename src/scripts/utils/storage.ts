@@ -15,7 +15,6 @@ export const generateUniqueNumber = (): number => {
   return Date.now() + Math.floor(Math.random() * 1000);
 };
 
-
 export const findById = (data: Recipe[] | Ingredient[], id: number) =>
   data.findIndex((item) => item.index === Number(id));
 
@@ -32,5 +31,3 @@ export const setDesserts = (data: Dessert[]): void =>
 
 export const findDessert = (data: Dessert[], id: number): Dessert | undefined =>
   data.find((item) => item.index === Number(id));
-
-
