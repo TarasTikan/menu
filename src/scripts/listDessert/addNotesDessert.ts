@@ -13,5 +13,6 @@ export const addNotesDessert = (e: Event) => {
   if (!dessert) return;
   dessert.notes = notes;
   setDesserts(data);
+  target.remove()
   updateListMenu();
 };

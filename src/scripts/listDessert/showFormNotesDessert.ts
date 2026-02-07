@@ -2,7 +2,6 @@ import { findDessert, getDesserts } from "../utils/storage.js";
 
 export const showFormNotesDessert = (e: Event) => {
   const target = e.target as HTMLButtonElement;
-
   if (target.hasAttribute("data-notes")) {
     const data = getDesserts();
     if (!data) return;
@@ -13,9 +12,7 @@ export const showFormNotesDessert = (e: Event) => {
     wrapBtn.insertAdjacentHTML(
       "beforebegin",
       `<form class="form-notes" id=${target.id} data-notes="notes">
-  <textarea name="notes" class="textarea-notes" placeholder="Введіть нотатки..." >${
-    dessert.notes || ""
-  }</textarea>
+  <textarea name="notes" class="textarea-notes" placeholder="Введіть нотатки..." >${dessert.notes || ""}</textarea>
   <button type="submit" class="btn-dessert-card">Зберегти</button></form>`,
     );
   }

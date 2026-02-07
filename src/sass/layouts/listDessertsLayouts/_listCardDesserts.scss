@@ -1,21 +1,13 @@
 .dessert-card {
-  flex-grow: 1;
-  flex-shrink: 1;
+  width: 300px;      
+  margin-bottom: 15px;  
   background-color: #ffebed;
   border-radius: 16px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   border: 2px solid white;
-  max-width: 380px;
   padding: 16px;
   display: flex;
   flex-direction: column;
-  height: 100%;
-}
-
-@media screen and (min-width: 600px) {
-  .dessert-card {
-    width: 300px;
-  }
 }
 
 .dessert-card-title {

@@ -31,8 +31,7 @@
 }
 
 .list-menu-recepie {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
+  display: block;
+  margin: 0 auto;
+  max-width: 1200px;
 }

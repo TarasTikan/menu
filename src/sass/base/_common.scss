@@ -75,7 +75,21 @@ body {
   padding: 0px 21px;
   margin: 0 auto;
 }
-
+@media screen and (min-width: 600px) {
+  .menu-desserts .container {
+    width: 600px;
+  }
+}
+@media screen and (min-width: 800px) {
+  .menu-desserts .container {
+    width: 800px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .menu-desserts .container {
+    width: 1200px;
+  }
+}
 @keyframes spin {
   from {
     transform: rotate(0deg);

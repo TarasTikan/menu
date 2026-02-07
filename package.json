@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/masonry-layout": "^4.2.8",
     "@vituum/vite-plugin-handlebars": "^1.1.0",
     "@vituum/vite-plugin-postcss": "^1.1.0",
     "sass": "^1.97.3",
@@ -21,6 +22,7 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.9.0",
+    "masonry-layout": "^4.2.2",
     "typescript-toastify": "^1.0.4"
   }
 }
