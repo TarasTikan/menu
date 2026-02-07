@@ -1,4 +1,3 @@
-import autoAnimate from "@formkit/auto-animate";
 import { dessertContainer } from "../../dom/domRefMain.ts";
 import { getMenuData } from "../../utils/storage.ts";
 

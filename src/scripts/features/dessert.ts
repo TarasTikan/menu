@@ -1,4 +1,3 @@
-import autoAnimate from "@formkit/auto-animate";
 import {
   btnAddDessertEl,
   btnFinalizeDessertEl,
@@ -8,20 +7,7 @@ import {
 } from "../dom/domRefMain";
 import type { Dessert } from "../types/types";
 import { getMenuData } from "../utils/storage";
-
-const animateSelector = () => {
-  const animateClass = [
-    ".list-ingredients-item",
-    ".wrap-recepie",
-    ".wrap-btn",
-    ".wrap-title-ingredients",
-  ];
-  animateClass.forEach((selector) => {
-    document
-      .querySelectorAll<HTMLElement>(selector)
-      .forEach((el) => autoAnimate(el));
-  });
-};
+import { animateDessertSelector } from "../utils/animate";
 
 export const renderFormRecepie = (data: Dessert) => {
   dessertContainer.innerHTML = "";
@@ -30,23 +16,19 @@ export const renderFormRecepie = (data: Dessert) => {
     `
             <h2 class="title-dessert">${data.desertName}</h2>
             <div class="wrap-btn">
-            <button type="button" class="btn-create-recepie" data-add="add" id=${
-              data.index
-            }>Додати до десерту рецепт</button>
-            <button type="button" class="btn-create-recepie" data-edit="edit" id=${
-              data.index
-            }><svg class="icon-pencil" width="15" height="15">
+            <button type="button" class="btn-create-recepie" data-add="add" id=${data.index
+    }>Додати до десерту рецепт</button>
+            <button type="button" class="btn-create-recepie" data-edit="edit" id=${data.index
+    }><svg class="icon-pencil" width="15" height="15">
   <use href="./img/icons.svg#icon-pencil"></use>
 </svg></button>
-<button type="button" class="btn-create-recepie" data-delete="delete" id=${
-      data.index
+<button type="button" class="btn-create-recepie" data-delete="delete" id=${data.index
     }><svg class="icon-delete" width="15" height="15">
   <use href="./img/icons.svg#icon-delete"></use>
 </svg></button>
             </div>
-          <p class="sub-title-recepie ${
-            data.recipeGroup.length || "hidden"
-          }">Технології приготування ${data.desertName}</p>
+          <p class="sub-title-recepie ${data.recipeGroup.length || "hidden"
+    }">Технології приготування ${data.desertName}</p>
           `,
   );
 };
@@ -62,24 +44,20 @@ export const renderListIngredients = (data: Dessert) => {
        <h1 class="title-recepie">${item.recipeName}</h1>
       
       <div class="wrap-btn">
-            <button type="button" class="btn-dessert" data-add="add" id=${
-              item.index
-            }>Додати до рецепту інгредієнт</button>
-             <button type="button" class="btn-dessert" data-edit="edit" id=${
-               item.index
-             }><svg class="icon-pencil" width="15" height="15">
+            <button type="button" class="btn-dessert" data-add="add" id=${item.index
+          }>Додати до рецепту інгредієнт</button>
+             <button type="button" class="btn-dessert" data-edit="edit" id=${item.index
+          }><svg class="icon-pencil" width="15" height="15">
   <use href="./img/icons.svg#icon-pencil"></use>
 </svg></button>
 
-<button type="button" class="btn-dessert" data-delete="delete" id=${
-          item.index
-        }><svg class="icon-delete" width="15" height="15">
+<button type="button" class="btn-dessert" data-delete="delete" id=${item.index
+          }><svg class="icon-delete" width="15" height="15">
   <use href="./img/icons.svg#icon-delete"></use>
 </svg></button>
       </div>
-      <div class="wrap-title-ingredients ${
-        item.recipeIngredienst.length > 0 ? "" : "hidden"
-      }"><h2 class="title-ingredients">Інгредієнти:</h2><button type="button" class="visible-btn">Показати</button> </div>
+      <div class="wrap-title-ingredients ${item.recipeIngredienst.length > 0 ? "" : "hidden"
+          }"><h2 class="title-ingredients">Інгредієнти:</h2><button type="button" class="visible-btn">Показати</button> </div>
           <ul class="list-ingredients-recepie hidden">
           ${item.recipeIngredienst
             .map(
@@ -97,8 +75,7 @@ export const renderListIngredients = (data: Dessert) => {
       )
       .join(""),
   );
-
-  animateSelector();
+  animateDessertSelector()
 };
 
 export const updateMenu = (): void => {
@@ -113,4 +90,5 @@ export const updateMenu = (): void => {
   if (!data.recipeGroup[0]) return;
   if (!data.recipeGroup[0].recipeIngredienst[0]) return;
   btnFinalizeDessertEl.classList.remove("hidden");
+  animateDessertSelector()
 };

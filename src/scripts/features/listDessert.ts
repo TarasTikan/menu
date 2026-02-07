@@ -1,21 +1,8 @@
 import type { Dessert } from "../types/types";
 import { formFilter, listMenu, menuTitle } from "../dom/domRefListDesserts";
 import { getDesserts } from "../utils/storage";
-import Masonry from "masonry-layout";
-import autoAnimate from "@formkit/auto-animate";
-
-export const initMasonry = () => {
-  const grid = document.querySelector<HTMLUListElement>(".list-menu-recepie");
-
-  if (!grid) return;
-
-  new Masonry(grid, {
-    itemSelector: ".dessert-card",
-    columnWidth: ".dessert-card",
-    gutter: 15,
-    fitWidth: true
-  });
-};
+import { initMasonry } from "../utils/masonry";
+import { animateListDessertSelector } from "../utils/animate";
 
 export const updateListMenu = (filtrData?: Dessert[]) => {
   const data = filtrData ?? getDesserts();
@@ -29,6 +16,7 @@ export const updateListMenu = (filtrData?: Dessert[]) => {
   }
   renderListDessert(data);
   initMasonry()
+  animateListDessertSelector();
 };
 
 const renderListDessert = (data: Dessert[]): void => {
@@ -79,5 +67,4 @@ const renderListDessert = (data: Dessert[]): void => {
       )
       .join(""),
   );
-  document.querySelectorAll<HTMLElement>(".dessert-card").forEach((el) => autoAnimate(el));
 };

@@ -1,12 +1,9 @@
 import { btnAddDessertEl } from "../../dom/domRefMain.ts";
-
-import autoAnimate from "@formkit/auto-animate";
+import { animateDessertSelector, } from "../../utils/animate.ts";
 
 export const showDessertForm = (e: Event) => {
   const target = e.target as HTMLButtonElement;
-  const containerWrapBtn = target.closest<HTMLLIElement>(".container");
-  if (!containerWrapBtn) return;
-  autoAnimate(containerWrapBtn);
+  animateDessertSelector();
   target.insertAdjacentHTML(
     "afterend",
     `<form class="form-container-dessert">

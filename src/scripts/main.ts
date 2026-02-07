@@ -26,7 +26,6 @@ import { showEditIngredientForm } from "./createDessert/ingredient/showEditIngre
 import { saveEditedIngredient } from "./createDessert/ingredient/saveEditedIngredient";
 import { finalizeDessert } from "./createDessert/dessert/finalizeDessert";
 import { updateMenu } from "./features/dessert";
-import autoAnimate from "@formkit/auto-animate";
 window.addEventListener("load", loaderCookies);
 
 btnAddDessertEl.addEventListener("click", showDessertForm);
@@ -53,6 +52,4 @@ recipeContainer.addEventListener("submit", saveEditedIngredient);
 btnFinalizeDessertEl.addEventListener("click", finalizeDessert);
 
 updateMenu();
-autoAnimate(mainContainerEl);
-autoAnimate(dessertContainer);
-autoAnimate(recipeContainer);
+

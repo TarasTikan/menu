@@ -1,3 +1,4 @@
+import { layoutMasonry } from "../utils/masonry.js";
 import { findDessert, getDesserts } from "../utils/storage.js";
 
 export const showFormNotesDessert = (e: Event) => {
@@ -16,4 +17,5 @@ export const showFormNotesDessert = (e: Event) => {
   <button type="submit" class="btn-dessert-card">Зберегти</button></form>`,
     );
   }
+  layoutMasonry()
 };
