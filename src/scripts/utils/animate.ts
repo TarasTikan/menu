@@ -8,7 +8,8 @@ export const animateDessertSelector = () => {
       ".wrap-title-ingredients",
       ".container",
       ".list-recepie-dessert",
-      ".list-ingredients-recepie"
+      ".list-ingredients-recepie",
+      ".backdrop"
     ];
     animateClass.forEach((selector) => {
       document

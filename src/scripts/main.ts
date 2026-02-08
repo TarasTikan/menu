@@ -26,6 +26,7 @@ import { showEditIngredientForm } from "./createDessert/ingredient/showEditIngre
 import { saveEditedIngredient } from "./createDessert/ingredient/saveEditedIngredient";
 import { finalizeDessert } from "./createDessert/dessert/finalizeDessert";
 import { updateMenu } from "./features/dessert";
+import {addDiameterDessert} from './createDessert/dessert/addDiameterDessert'
 window.addEventListener("load", loaderCookies);
 
 btnAddDessertEl.addEventListener("click", showDessertForm);
@@ -49,7 +50,7 @@ recipeContainer.addEventListener("click", toggleIngredientsVisibility);
 recipeContainer.addEventListener("click", showEditIngredientForm);
 recipeContainer.addEventListener("submit", saveEditedIngredient);
 
-btnFinalizeDessertEl.addEventListener("click", finalizeDessert);
+btnFinalizeDessertEl.addEventListener("click", addDiameterDessert);
 
 updateMenu();
 
