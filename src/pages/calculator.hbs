@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> head}}
+</head>
+
+<body>
+    <div id="preloader">
+        <img src="/img/loader.png" alt="Loading..." class="cookie" />
+    </div>
+    <header class="header">
+        {{> header}}
+    </header>
+    <main>
+        <section>
+            <div class="container">
+                <h2>Калькулятор перерахунку на інший діаметр</h2>
+                <div>
+                    <ul>
+                        <li>1. Оберіть десерт</li>
+                        <li>2. Введіть новий діаметр</li>
+                        <li>3. Отримуєте рецепт з потрібним вам діаметром</li>
+                    </ul>
+                    <form class="form-calculation">
+                        <select class="select-desserts" name="diametrDessert">
+                        </select>
+                        <select name="diametrDessertNeed">
+                            <option value="8">8 см</option>
+                            <option value="10">10 см</option>
+                            <option value="12">12 см</option>
+                            <option value="14">14 см</option>
+                            <option value="16">16 см</option>
+                            <option value="18">18 см</option>
+                            <option value="20">20 см</option>
+                        </select>
+                        <button type="submit">Розрахувати десерт</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script type="module" src="/src/scripts/calculator.ts"></script>
+</body>
+
+</html>
