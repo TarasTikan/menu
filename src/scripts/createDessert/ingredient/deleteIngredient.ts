@@ -1,4 +1,4 @@
-import { btnFinalizeDessertEl } from "../../dom/domRefMain.ts";
+import { btnAddDiametrDessertEl } from "../../dom/domRefMain.ts";
 import { updateMenu } from "../../features/dessert.ts";
 import { getMenuData, setMenuData, findById } from "../../utils/storage.js";
 
@@ -19,7 +19,7 @@ export const deleteIngredient = (e: Event) => {
     if (ingredientIndex === -1) return;
     data.recipeGroup[recipeIndex].recipeIngredienst.splice(ingredientIndex, 1);
     setMenuData(data);
-    btnFinalizeDessertEl.classList.add("hidden");
+    btnAddDiametrDessertEl.classList.add("hidden");
     updateMenu();
   }
 };

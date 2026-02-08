@@ -1,5 +1,5 @@
 import { getMenuData, setMenuData } from "../../utils/storage.js";
-import { btnFinalizeDessertEl } from "../../dom/domRefMain.ts";
+import { btnAddDiametrDessertEl } from "../../dom/domRefMain.ts";
 import { updateMenu } from "../../features/dessert.ts";
 
 export const deleteRecipe = (e: Event) => {
@@ -11,7 +11,7 @@ export const deleteRecipe = (e: Event) => {
       (item) => item.index !== Number(target.id),
     );
     setMenuData(data);
-    btnFinalizeDessertEl.classList.add("hidden");
+    btnAddDiametrDessertEl.classList.add("hidden");
     updateMenu();
   }
 };

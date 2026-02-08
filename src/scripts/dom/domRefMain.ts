@@ -15,6 +15,9 @@ export const recipeContainer = helpersDomRef<HTMLUListElement>(
 );
 export const btnAddDessertEl =
   helpersDomRef<HTMLButtonElement>(".add-btn-dessert");
-export const btnFinalizeDessertEl = helpersDomRef<HTMLButtonElement>(
-  ".btn-successfully-dessert",
-);
+  export const btnAddDiametrDessertEl = helpersDomRef<HTMLButtonElement>(
+    ".btn-addDiametr",
+  );
+  export const backDrop = helpersDomRef<HTMLDivElement>('.backdrop')
+  export const modalDiametr = helpersDomRef<HTMLDivElement>('.modalWindow')
+  export const btnCloseModalDiameter = helpersDomRef<HTMLButtonElement>('.btn-close')

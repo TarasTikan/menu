@@ -3,7 +3,7 @@ import {
   dessertContainer,
   recipeContainer,
   btnAddDessertEl,
-  btnFinalizeDessertEl,
+  btnAddDiametrDessertEl,
 } from "../../dom/domRefMain.js";
 
 export const deleteDessert = (e: Event) => {
@@ -12,7 +12,7 @@ export const deleteDessert = (e: Event) => {
     dessertContainer.innerHTML = "";
     recipeContainer.innerHTML = "";
     btnAddDessertEl.classList.remove("hidden");
-    btnFinalizeDessertEl.classList.add("hidden");
+    btnAddDiametrDessertEl.classList.add("hidden");
     mainTitleEl.classList.remove("hidden");
   }
 };

@@ -1,40 +1,36 @@
 import {
   dessertContainer,
   recipeContainer,
-  btnFinalizeDessertEl,
+  btnAddDiametrDessertEl,
   btnAddDessertEl,
   mainTitleEl,
+  backDrop,
+  modalDiametr,
 } from "../../dom/domRefMain.ts";
 import { getDesserts, getMenuData, setDesserts } from "../../utils/storage.ts";
 import Toast from "typescript-toastify";
 
-export const finalizeDessert = (): void => {
+export const finalizeDessert = (e: Event): void => {
+  e.preventDefault();
+  const form = (e.target as HTMLElement).closest<HTMLFormElement>(
+    ".formDiameter",
+  );
+  if (!form) return
   const data = getMenuData();
-  if (!data) return;
- const checkRecepie = data.recipeGroup.every(item => item.recipeIngredienst.length !== 0)
- if(!checkRecepie) {
- return new Toast({
-  position: "top-right",
-  toastMsg: "Один з рецептів без інгредієнтів",
-  autoCloseTime: 2000,
-  canClose: true,
-  showProgress: true,
-  pauseOnHover: true,
-  pauseOnFocusLoss: true,
-  type: "error",
-  theme: "light"
-})
- }
+  const diametr = (form.elements.namedItem("diametr") as HTMLInputElement).value
+  if (!diametr || !data) return;
   const dataListMenu = getDesserts() ?? [];
-  dataListMenu.push(data);
+  dataListMenu.push({ ...data, diametrDessert: Number(diametr) });
   setDesserts(dataListMenu);
   localStorage.removeItem("menu");
   dessertContainer.innerHTML = "";
   recipeContainer.innerHTML = "";
-  btnFinalizeDessertEl.classList.add("hidden");
+  form.reset()
+  btnAddDiametrDessertEl.classList.add("hidden");
   btnAddDessertEl.classList.remove("hidden");
   mainTitleEl.classList.remove("hidden");
-
+  backDrop.classList.remove("is-open");
+  modalDiametr.classList.remove("is-open")
   new Toast({
     position: "top-right",
     toastMsg: "Десерт успішно створено",

@@ -9,7 +9,6 @@ export const animateDessertSelector = () => {
       ".container",
       ".list-recepie-dessert",
       ".list-ingredients-recepie",
-      ".backdrop"
     ];
     animateClass.forEach((selector) => {
       document

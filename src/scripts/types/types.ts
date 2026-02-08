@@ -3,6 +3,7 @@ export type Dessert = {
   index: number;
   recipeGroup: Recipe[];
   notes?: string;
+  diametrDessert?: number
 };
 
 export type Recipe = {

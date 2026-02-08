@@ -28,6 +28,7 @@ const renderListDessert = (data: Dessert[]): void => {
         (item) => `
         <li class="dessert-card">
           <h1 class="dessert-card-title">${item.desertName}</h1>
+          <p class="dessert-diametr-text">Діаметр форми у рецепті: <strong>${item.diametrDessert} см </strong></p>
           <ul class="recipe-list">
             ${item.recipeGroup
             .map(

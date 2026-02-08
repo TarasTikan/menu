@@ -1,5 +1,6 @@
 import './addDessert.ts'
 import './cancelEditDessert.ts'
+import './closeDiameterModalDessert.ts'
 import './deleteDessert.ts'
 import './finalizeDessert.ts'
 import './saveEditedDessert.ts'

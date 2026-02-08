@@ -1,6 +1,6 @@
 import {
   btnAddDessertEl,
-  btnFinalizeDessertEl,
+  btnAddDiametrDessertEl,
   dessertContainer,
   mainTitleEl,
   recipeContainer,
@@ -89,6 +89,6 @@ export const updateMenu = (): void => {
   renderListIngredients(data);
   if (!data.recipeGroup[0]) return;
   if (!data.recipeGroup[0].recipeIngredienst[0]) return;
-  btnFinalizeDessertEl.classList.remove("hidden");
+  btnAddDiametrDessertEl.classList.remove("hidden");
   animateDessertSelector()
 };

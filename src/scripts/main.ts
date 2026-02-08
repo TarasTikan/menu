@@ -1,8 +1,9 @@
 import { addDessert } from "./createDessert/dessert/addDessert";
 import {
-  btnFinalizeDessertEl,
+  backDrop,
+  btnAddDiametrDessertEl,
+  btnCloseModalDiameter,
   dessertContainer,
-  mainContainerEl,
   recipeContainer,
 } from "./dom/domRefMain";
 import { showDessertForm } from "./createDessert/dessert/showDessertForm";
@@ -24,9 +25,10 @@ import { toggleIngredientsVisibility } from "./createDessert/ingredient/toggleIn
 import { deleteIngredient } from "./createDessert/ingredient/deleteIngredient";
 import { showEditIngredientForm } from "./createDessert/ingredient/showEditIngredientForm";
 import { saveEditedIngredient } from "./createDessert/ingredient/saveEditedIngredient";
-import { finalizeDessert } from "./createDessert/dessert/finalizeDessert";
 import { updateMenu } from "./features/dessert";
-import {addDiameterDessert} from './createDessert/dessert/addDiameterDessert'
+import { showDiameterModalDessert } from "./createDessert/dessert/showDiameterModalDessert";
+import { finalizeDessert } from "./createDessert/dessert/finalizeDessert";
+import { closeDiameterModalDessert } from "./createDessert/dessert/closeDiameterModalDessert";
 window.addEventListener("load", loaderCookies);
 
 btnAddDessertEl.addEventListener("click", showDessertForm);
@@ -50,7 +52,10 @@ recipeContainer.addEventListener("click", toggleIngredientsVisibility);
 recipeContainer.addEventListener("click", showEditIngredientForm);
 recipeContainer.addEventListener("submit", saveEditedIngredient);
 
-btnFinalizeDessertEl.addEventListener("click", addDiameterDessert);
+btnAddDiametrDessertEl.addEventListener("click", showDiameterModalDessert);
+backDrop.addEventListener("click", closeDiameterModalDessert)
+btnCloseModalDiameter.addEventListener("click", closeDiameterModalDessert)
+document.addEventListener("submit", finalizeDessert)
 
 updateMenu();
 
