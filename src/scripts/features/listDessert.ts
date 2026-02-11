@@ -56,11 +56,11 @@ const renderListDessert = (data: Dessert[]): void => {
           <div class="wrap-btn-dessert-card">
           <button type="button" class="btn-dessert-card" data-notes="notes" id=${item.index
           }><svg class="icon-notes" width="15" height="15">
-  <use href="./img/icons.svg#icon-notes"></use>
+  <use href="/img/icons.svg#icon-notes"></use>
 </svg></button>
           <button type="button" class="btn-dessert-card" data-delete="delete" id=${item.index
           }><svg class="icon-delete" width="15" height="15">
-  <use href="./img/icons.svg#icon-delete"></use>
+  <use href="/img/icons.svg#icon-delete"></use>
 </svg></button>
           </div>
         </li>

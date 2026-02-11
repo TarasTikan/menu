@@ -17,4 +17,5 @@ export default defineConfig({
     }),
     ViteImageOptimizer(),
   ],
+    base: "/menu/",
 });

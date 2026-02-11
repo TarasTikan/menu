@@ -20,11 +20,11 @@ export const renderFormRecepie = (data: Dessert) => {
     }>Додати до десерту рецепт</button>
             <button type="button" class="btn-create-recepie" data-edit="edit" id=${data.index
     }><svg class="icon-pencil" width="15" height="15">
-  <use href="./img/icons.svg#icon-pencil"></use>
+  <use href="/img/icons.svg#icon-pencil"></use>
 </svg></button>
 <button type="button" class="btn-create-recepie" data-delete="delete" id=${data.index
     }><svg class="icon-delete" width="15" height="15">
-  <use href="./img/icons.svg#icon-delete"></use>
+  <use href="/img/icons.svg#icon-delete"></use>
 </svg></button>
             </div>
           <p class="sub-title-recepie ${data.recipeGroup.length || "hidden"
@@ -48,12 +48,12 @@ export const renderListIngredients = (data: Dessert) => {
           }>Додати до рецепту інгредієнт</button>
              <button type="button" class="btn-dessert" data-edit="edit" id=${item.index
           }><svg class="icon-pencil" width="15" height="15">
-  <use href="./img/icons.svg#icon-pencil"></use>
+  <use href="/img/icons.svg#icon-pencil"></use>
 </svg></button>
 
 <button type="button" class="btn-dessert" data-delete="delete" id=${item.index
           }><svg class="icon-delete" width="15" height="15">
-  <use href="./img/icons.svg#icon-delete"></use>
+  <use href="/img/icons.svg#icon-delete"></use>
 </svg></button>
       </div>
       <div class="wrap-title-ingredients ${item.recipeIngredienst.length > 0 ? "" : "hidden"
@@ -63,10 +63,10 @@ export const renderListIngredients = (data: Dessert) => {
             .map(
               (itemReciperIng) =>
                 `<li class="list-ingredients-item"><p class="ingredients-text">${itemReciperIng.ingredients} — ${itemReciperIng.numb}</p><button type="button" class="btn-dessert" data-edit="edit" id=${itemReciperIng.index}><svg class="icon-pencil" width="15" height="15">
-  <use href="./img/icons.svg#icon-pencil"></use>
+  <use href="/img/icons.svg#icon-pencil"></use>
 </svg></button>
 <button type="button" class="btn-dessert" data-deleteRe="delete" id=${itemReciperIng.index}><svg class="icon-delete" width="15" height="15">
-  <use href="./img/icons.svg#icon-delete"></use>
+  <use href="/img/icons.svg#icon-delete"></use>
 </svg></button> </li>`,
             )
             .join("")}

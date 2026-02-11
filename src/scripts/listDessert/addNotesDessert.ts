@@ -26,7 +26,7 @@ export const addNotesDessert = (e: Event) => {
     recipeList.insertAdjacentHTML("afterend", `<p class="describe-dessert"><strong>Нотатки:</strong> ${dessert.notes}</p>`)
   }
   containerWrapBtn.insertAdjacentHTML("afterbegin", ` <button type="button" class="btn-dessert-card" data-notes="notes" id=${target.id}><svg class="icon-notes" width="15" height="15">
-<use href="./img/icons.svg#icon-notes"></use>
+<use href="/img/icons.svg#icon-notes"></use>
 </svg></button>`)
   layoutMasonry()
 };
