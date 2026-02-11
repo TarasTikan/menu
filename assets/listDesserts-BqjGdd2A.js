@@ -16,15 +16,15 @@ import{g as L,b as nt,f as J,s as K,l as rt}from"./loader-DDeYnoZy.js";function 
           ${u.notes?`<p class="describe-dessert"><strong>Нотатки:</strong> ${u.notes}</p>`:'<p class="describe-dessert"><strong>Нотатки:</strong> Немає нотаток</p>'}
           <div class="wrap-btn-dessert-card">
           <button type="button" class="btn-dessert-card" data-notes="notes" id=${u.index}><svg class="icon-notes" width="15" height="15">
-  <use href="./img/icons.svg#icon-notes"></use>
+  <use href="/img/icons.svg#icon-notes"></use>
 </svg></button>
           <button type="button" class="btn-dessert-card" data-delete="delete" id=${u.index}><svg class="icon-delete" width="15" height="15">
-  <use href="./img/icons.svg#icon-delete"></use>
+  <use href="/img/icons.svg#icon-delete"></use>
 </svg></button>
           </div>
         </li>
       `).join(""))},gt=m=>{m.preventDefault();const u=m.target;if(!u.hasAttribute("data-notes"))return;const l=u.elements.namedItem("notes").value,f=u.closest(".dessert-card");if(!f)return;const d=f.querySelector(".recipe-list"),h=f.querySelector(".describe-dessert"),a=f.querySelector(".wrap-btn-dessert-card");if(!d||!h||!a)return;const o=L();if(!o)return;const s=J(o,Number(u.id));s&&(s.notes=l,K(o),u.remove(),h.remove(),l?d.insertAdjacentHTML("afterend",`<p class="describe-dessert"><strong>Нотатки:</strong> ${s.notes}</p>`):d.insertAdjacentHTML("afterend",'<p class="describe-dessert"><strong>Нотатки:</strong> Немає нотаток</p>'),a.insertAdjacentHTML("afterbegin",` <button type="button" class="btn-dessert-card" data-notes="notes" id=${u.id}><svg class="icon-notes" width="15" height="15">
-<use href="./img/icons.svg#icon-notes"></use>
+<use href="/img/icons.svg#icon-notes"></use>
 </svg></button>`),it())},vt=m=>{const u=L(),l=m.target;if(!u)return;const f=u.filter(d=>d.desertName.toLowerCase().includes(l.value.toLowerCase()||""));!f||f.length===0||w(f)},mt=m=>{const u=m.target;if(u.hasAttribute("data-delete")){if(!confirm("Ти впевнений(а), що хочеш видалити цей десерт?"))return;const l=L();if(!l||l.length===0)return;const f=l.filter(d=>d.index!==Number(u.id));K(f),w()}},yt=m=>{const u=m.target;if(u.hasAttribute("data-notes")){const l=L();if(!l)return;const f=J(l,Number(u.id)),d=u.closest(".wrap-btn-dessert-card");if(!f||!d)return;u.remove(),d.insertAdjacentHTML("beforebegin",`<form class="form-notes" id=${u.id} data-notes="notes">
   <textarea name="notes" class="textarea-notes" placeholder="Введіть нотатки..." >${f.notes||""}</textarea>
   <button type="submit" class="btn-dessert-card">Зберегти</button></form>`)}it()};window.addEventListener("load",rt);tt.addEventListener("input",vt);T.addEventListener("submit",gt);T.addEventListener("click",yt);T.addEventListener("click",mt);w();

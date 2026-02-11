@@ -3,10 +3,10 @@ import{c as d,d as E,e as m,h as w,i as b,g as A,s as D,l as k}from"./loader-DDe
             <div class="wrap-btn">
             <button type="button" class="btn-create-recepie" data-add="add" id=${s.index}>Додати до десерту рецепт</button>
             <button type="button" class="btn-create-recepie" data-edit="edit" id=${s.index}><svg class="icon-pencil" width="15" height="15">
-  <use href="./img/icons.svg#icon-pencil"></use>
+  <use href="/img/icons.svg#icon-pencil"></use>
 </svg></button>
 <button type="button" class="btn-create-recepie" data-delete="delete" id=${s.index}><svg class="icon-delete" width="15" height="15">
-  <use href="./img/icons.svg#icon-delete"></use>
+  <use href="/img/icons.svg#icon-delete"></use>
 </svg></button>
             </div>
           <p class="sub-title-recepie ${s.recipeGroup.length||"hidden"}">Технології приготування ${s.desertName}</p>
@@ -17,20 +17,20 @@ import{c as d,d as E,e as m,h as w,i as b,g as A,s as D,l as k}from"./loader-DDe
       <div class="wrap-btn">
             <button type="button" class="btn-dessert" data-add="add" id=${e.index}>Додати до рецепту інгредієнт</button>
              <button type="button" class="btn-dessert" data-edit="edit" id=${e.index}><svg class="icon-pencil" width="15" height="15">
-  <use href="./img/icons.svg#icon-pencil"></use>
+  <use href="/img/icons.svg#icon-pencil"></use>
 </svg></button>
 
 <button type="button" class="btn-dessert" data-delete="delete" id=${e.index}><svg class="icon-delete" width="15" height="15">
-  <use href="./img/icons.svg#icon-delete"></use>
+  <use href="/img/icons.svg#icon-delete"></use>
 </svg></button>
       </div>
       <div class="wrap-title-ingredients ${e.recipeIngredienst.length>0?"":"hidden"}"><h2 class="title-ingredients">Інгредієнти:</h2><button type="button" class="visible-btn">Показати</button> </div>
           <ul class="list-ingredients-recepie hidden">
           ${e.recipeIngredienst.map(t=>`<li class="list-ingredients-item"><p class="ingredients-text">${t.ingredients} — ${t.numb}</p><button type="button" class="btn-dessert" data-edit="edit" id=${t.index}><svg class="icon-pencil" width="15" height="15">
-  <use href="./img/icons.svg#icon-pencil"></use>
+  <use href="/img/icons.svg#icon-pencil"></use>
 </svg></button>
 <button type="button" class="btn-dessert" data-deleteRe="delete" id=${t.index}><svg class="icon-delete" width="15" height="15">
-  <use href="./img/icons.svg#icon-delete"></use>
+  <use href="/img/icons.svg#icon-delete"></use>
 </svg></button> </li>`).join("")}
           </ul>
           </li>`).join("")),E()},u=()=>{const s=d();if(!s)return h.classList.remove("hidden");v.classList.add("hidden"),h.classList.add("hidden"),q(s),N(s),s.recipeGroup[0]&&s.recipeGroup[0].recipeIngredienst[0]&&(g.classList.remove("hidden"),E())},C=s=>{s.preventDefault();const e=s.target.closest(".form-container-dessert");if(!e)return;const t=e.elements.namedItem("dessertName").value;if(!t)return;const i={desertName:t,index:w(),recipeGroup:[]};m(i),u(),e.elements.namedItem("dessertName").value="",e.remove(),v.classList.add("hidden")},G=s=>{const e=s.target;E(),e.insertAdjacentHTML("afterend",`<form class="form-container-dessert">
