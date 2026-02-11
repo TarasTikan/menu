@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/menu/img/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="/menu/img/favicon.ico" type="image/x-icon" />
+<title>CookBook App</title>    <script type="module" crossorigin src="/menu/assets/main-B1rpjuje.js"></script>
+    <script type="module" crossorigin src="/menu/assets/loader-DDeYnoZy.js"></script>
+    <script type="module" crossorigin src="/menu/assets/main-Bv7OLDs5.js"></script>
+    <link rel="stylesheet" crossorigin href="/menu/assets/main-DETg9fhf.css">
+    <link rel="stylesheet" crossorigin href="/menu/assets/main-BaLCrSH8.css">
+  </head>
+  <body>
+  <div id="preloader">
+    <img src="/menu/img/loader.png" alt="Loading..." class="cookie" />
+  </div>
+    <header class="header">
+      <div class="container">
+        <nav class="nav">
+          <ul class="nav-list">
+            <li><a href="./index" class="nav-link">Головна</a></li>
+            <li><a href="./listDesserts" class="nav-link">Список рецептів</a></li>
+            <li><a href="./calculator" class="nav-link">Калькулятор десертів</a></li>
+          </ul>
+        </nav>
+      </div>    </header>
+    <main>
+       <section class="section-form-menu">
+        <div class="container">
+          <h1 class="title-dessert">Створення десерту</h1>
+          <button type="button" class="add-btn-dessert">
+            Створити десерт
+          </button>           <div class="list-recepie-dessert"></div>
+          <ul class="list-ingredients-recepie"></ul>
+          <button type="button" class="btn-addDiametr hidden">
+            Готовий десерт
+          </button>
+        </div>
+       </section>
+       <div class="backdrop">
+         <div class="modalWindow">
+           <button type="button" class="btn-close"><svg width="15" height="15">
+               <use href="/menu/img/icons.svg#icon-cross">
+       
+               </use>
+             </svg></button>
+           <form class="formDiameter">
+             <h2 class="titleForm">Додайте розмір форми десерту</h2>
+             <select
+               name="diametrDessertNeed"
+               class="input-diameter"
+               id="diametr"
+               name="diametr"
+               required
+             >
+               <option value="8">8 см</option>
+               <option value="10">10 см</option>
+               <option value="12">12 см</option>
+               <option value="14">14 см</option>
+               <option value="16">16 см</option>
+               <option value="18">18 см</option>
+               <option value="20">20 см</option>
+             </select>
+             <button type="submit" class="btn-successfully-dessert">Готовий десерт</button>
+           </form>
+         </div>
+       </div>    </main>
+  </body>
+</html>
