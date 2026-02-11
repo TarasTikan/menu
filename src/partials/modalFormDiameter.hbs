@@ -1,14 +1,28 @@
 <div class="backdrop">
-    <div class="modalWindow">
-        <button type="button" class="btn-close"><svg width="15" height="15">
-                <use href="/public/img/icons.svg#icon-cross">
+  <div class="modalWindow">
+    <button type="button" class="btn-close"><svg width="15" height="15">
+        <use href="/img/icons.svg#icon-cross">
 
-                </use>
-            </svg></button>
-        <form class="formDiameter">
-            <h2 class="titleForm">Додайте розмір форми десерту</h2>
-            <input class="input-diameter" name="diametr" type="number" required />
-            <button type="submit" class="btn-successfully-dessert">Готовий десерт</button>
-        </form>
-    </div>
+        </use>
+      </svg></button>
+    <form class="formDiameter">
+      <h2 class="titleForm">Додайте розмір форми десерту</h2>
+      <select
+        name="diametrDessertNeed"
+        class="input-diameter"
+        id="diametr"
+        name="diametr"
+        required
+      >
+        <option value="8">8 см</option>
+        <option value="10">10 см</option>
+        <option value="12">12 см</option>
+        <option value="14">14 см</option>
+        <option value="16">16 см</option>
+        <option value="18">18 см</option>
+        <option value="20">20 см</option>
+      </select>
+      <button type="submit" class="btn-successfully-dessert">Готовий десерт</button>
+    </form>
+  </div>
 </div>

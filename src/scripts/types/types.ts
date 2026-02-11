@@ -15,5 +15,5 @@ export type Recipe = {
 export type Ingredient = {
   ingredients: string;
   index: number;
-  numb: string;
+  numb: string
 };

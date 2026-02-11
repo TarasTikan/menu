@@ -12,6 +12,7 @@
     "@types/masonry-layout": "^4.2.8",
     "@vituum/vite-plugin-handlebars": "^1.1.0",
     "@vituum/vite-plugin-postcss": "^1.1.0",
+    "gh-pages": "^6.3.0",
     "sass": "^1.97.3",
     "sharp": "^0.34.5",
     "svgo": "^4.0.0",

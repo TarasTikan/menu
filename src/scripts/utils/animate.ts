@@ -29,3 +29,18 @@ export const animateDessertSelector = () => {
         .forEach((el) => autoAnimate(el));
     });
   };
+
+   export const animateCalculatorDessertSelector = () => {
+    const animateClass = [
+      ".container",
+      ".wrap-info",
+      ".form-calculation",
+      ".select-desserts",
+      ".wrap-card"
+    ];
+    animateClass.forEach((selector) => {
+      document
+        .querySelectorAll<HTMLElement>(selector)
+        .forEach((el) => autoAnimate(el));
+    });
+  };

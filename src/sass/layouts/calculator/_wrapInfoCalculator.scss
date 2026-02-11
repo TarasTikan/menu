@@ -1,0 +1,121 @@
+.wrap-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 21px;
+  background-color: #ffebed;
+  border-radius: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border: 2px solid white;
+  margin-bottom: 20px;
+}
+
+.title-calculator {
+  font-size: 15px;
+  font-weight: 700;
+  color: #6e1a2b;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.label-select {
+  font-size: 10px;
+  font-weight: 700;
+  color: #6e1a2b;
+  text-align: end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-calculation {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: auto;
+  gap: 10px;
+}
+.wrap-submit {
+  display: flex;
+  gap: 10px;
+}
+@media screen and (min-width: 600px) {
+  .title-calculator {
+    font-size: 20px;
+  }
+  .support-item {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .title-calculator {
+    font-size: 30px;
+  }
+  .label-select {
+    font-size: 18px;
+  }
+
+}
+
+.select-desserts {
+  height: 20px;
+  background-color: #ffebed;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 16px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #6e1a2b;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 1000px) {
+  .select-desserts {
+    height: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 15px;
+  }
+}
+
+.result-submit-btn {
+  color: #6e1a2b;
+  font-size: 5px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  text-transform: uppercase;
+  border: 2px solid rgb(255, 255, 255);
+  padding: 5px;
+  border-radius: 16px;
+  background-color: #ffebed;
+  transition:
+    background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    cursor 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+
+.result-submit-btn:hover {
+  background-color: #f48fa3;
+  border-color: transparent;
+  fill: white;
+  color: white;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+  .result-submit-btn {
+    font-size: 7px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .result-submit-btn {
+    padding: 5px;
+    font-size: 10px;
+  }
+}

@@ -15,17 +15,15 @@
     <main>
         <section>
             <div class="container">
-                <h2>Калькулятор перерахунку на інший діаметр</h2>
-                <div>
-                    <ul>
-                        <li>1. Оберіть десерт</li>
-                        <li>2. Введіть новий діаметр</li>
-                        <li>3. Отримуєте рецепт з потрібним вам діаметром</li>
-                    </ul>
+                <div class="wrap-info">
+                <h2 class="title-calculator">Калькулятор перерахунку на інший діаметр</h2>
                     <form class="form-calculation">
-                        <select class="select-desserts" name="diametrDessert">
+                        <label for="dessert" class="label-select">1. Оберіть десерт
+                        <select class="select-desserts" name="diametrDessert" id="dessert">
                         </select>
-                        <select name="diametrDessertNeed">
+                        </label>
+                          <label for="diametr" class="label-select">2. Введіть новий діаметр
+                        <select name="diametrDessertNeed" class="select-desserts" id="diametr">
                             <option value="8">8 см</option>
                             <option value="10">10 см</option>
                             <option value="12">12 см</option>
@@ -34,9 +32,14 @@
                             <option value="18">18 см</option>
                             <option value="20">20 см</option>
                         </select>
-                        <button type="submit">Розрахувати десерт</button>
+                        </label>
+                        <div class="wrap-submit">
+                            <p class="label-select">3. Отримуєте рецепт з потрібним вам діаметром</p>
+                        <button type="submit" class="result-submit-btn">Розрахувати десерт</button>
+                        </div>
                     </form>
                 </div>
+                <div class="wrap-card"></div>
             </div>
         </section>
     </main>

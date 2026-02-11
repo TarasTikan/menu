@@ -31,11 +31,11 @@
 .nav-link {
   text-transform: uppercase;
   color: #6e1a2b;
-  font-size: 11px;
+  font-size: 7px;
   font-weight: 600;
   line-height: 21px;
   text-decoration: none;
-  padding: 25px 10px;
+  padding: 10px 10px;
   transition:
     background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
     border-radius 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -48,7 +48,14 @@
 
 @media screen and (min-width: 400px) {
   .nav-link {
-    padding: 27px 25px;
+    font-size: 9px;
+    padding: 6px 6px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .nav-link {
+    padding: 15px 15px;
     font-size: 13px;
   }
 }
